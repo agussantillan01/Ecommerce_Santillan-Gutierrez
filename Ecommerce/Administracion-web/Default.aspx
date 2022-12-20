@@ -116,7 +116,7 @@
             <div class="col">
                 <div class="card">
                     <div class="face front">
-                        <img src="../img/celularCard.png" alt="Alternate Text" />
+                        <img src="../img/celularCard.jpg" alt="Alternate Text" />
                         <h3>Celulares</h3>
                     </div>
                     <div class="face back">
@@ -131,8 +131,8 @@
             <div class="col">
                 <div class="card">
                     <div class="face front">
-                        <img src="../img/notebookCard.png" alt="Alternate Text" />
-                        <h3>Celulares</h3>
+                        <img src="../img/notebookCard.jpg" alt="Alternate Text" />
+                        <h3>Notebooks</h3>
                     </div>
                     <div class="face back">
                         <h3>Notebooks/PC</h3>
