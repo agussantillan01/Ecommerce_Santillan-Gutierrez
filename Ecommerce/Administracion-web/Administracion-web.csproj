@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="quienesSomos.aspx" />
+    <Content Include="ShopTodos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +78,20 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="quienesSomos.aspx.cs">
+      <DependentUpon>quienesSomos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="quienesSomos.aspx.designer.cs">
+      <DependentUpon>quienesSomos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopTodos.aspx.cs">
+      <DependentUpon>ShopTodos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopTodos.aspx.designer.cs">
+      <DependentUpon>ShopTodos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -92,7 +92,7 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../img/imgCarrousel2.jpg" class="d-block w-100" alt="...">
+                    <img src="../img/imgCarrousel2.jpg" class="d-block w-100" style="height: 100%;" alt="...">
                 </div>
                 <div class="carousel-item">
                     <img src="../img/imgCarrousel3.png" class="d-block w-100" alt="...">
@@ -111,8 +111,8 @@
             </button>
         </div>
         <br />
-        <h3 style="font-family: Arial;">Productos</h3>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <h3 style="font-family: Arial; text-align: center;">Productos</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4 sectionCard" >
             <div class="col">
                 <div class="card">
                     <div class="face front">
@@ -159,6 +159,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </asp:Content>
