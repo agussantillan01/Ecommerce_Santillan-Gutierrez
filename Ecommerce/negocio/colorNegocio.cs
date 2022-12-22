@@ -10,7 +10,7 @@ namespace negocio
 {
     public class colorNegocio
     {
-        public List<Color> listarSP(int idProducto)
+        public List<Color> listar(int idProducto)
         {
             List<Color> lista = new List<Color>();
             SqlConnection conexion = new SqlConnection();
@@ -20,7 +20,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT C.ID, C.NOMBRE FROM COLORES_X_PRODUCTO CXP INNER JOIN COLORES C ON CXP.IDCOLOR=C.ID WHERE CXP.IDPRODUCTO = "+ idProducto;
+                comando.CommandText = "SELECT C.ID, C.NOMBRE FROM COLORES_X_PRODUCTO CXP INNER JOIN COLORES C ON CXP.IDCOLOR=C.ID WHERE CXP.IDPRODUCTO = "+ idProducto +" AND CXP.STOCK > 0";
                 comando.Connection = conexion;
                 conexion.Open();
 

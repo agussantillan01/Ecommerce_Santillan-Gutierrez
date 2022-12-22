@@ -25,7 +25,7 @@ namespace Administracion_web
                     prod = list.Find(x => x.Id == idSeleccionado);
 
                     colorNegocio negocioColor = new colorNegocio();
-                    List<Color> listColor = negocioColor.listarSP(idSeleccionado);
+                    List<Color> listColor = negocioColor.listar(idSeleccionado);
 
                     ddlColores.DataSource = listColor;
                     ddlColores.DataValueField = "Id";
