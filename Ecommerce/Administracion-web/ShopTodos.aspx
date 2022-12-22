@@ -13,8 +13,8 @@
                 <div class="card-body">
                     <h5 class="card-title"><% = item.Nombre %></h5>
                     <p style="color: grey;" class="card-text"><%= item.Descripcion %></p>
-                    <%--<a href="DetalleArticulo.aspx?id=<% = item.Id %>" class="btn btn-primary">Ver Detalle</a>--%>
-                    <a href="#" class="btn btn-primary">Ver Detalle</a>
+                    <a href="detalleProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">Ver Detalle</a>
+                    
                 </div>
             </div>
         </div>

@@ -54,3 +54,5 @@ CANTIDAD INT NOT NULL,
 PRECIO MONEY NOT NULL
 )
 
+
+-- ****************** PROCEDIMIENTOS ALMACENADOS ******************
