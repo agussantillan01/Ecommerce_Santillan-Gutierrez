@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="detalleProducto.aspx" />
+    <Content Include="agregarProducto.aspx" />
     <Content Include="quienesSomos.aspx" />
     <Content Include="ShopTodos.aspx" />
     <Content Include="Web.config" />
@@ -84,6 +85,13 @@
     </Compile>
     <Compile Include="detalleProducto.aspx.designer.cs">
       <DependentUpon>detalleProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agregarProducto.aspx.cs">
+      <DependentUpon>agregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agregarProducto.aspx.designer.cs">
+      <DependentUpon>agregarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="quienesSomos.aspx.cs">

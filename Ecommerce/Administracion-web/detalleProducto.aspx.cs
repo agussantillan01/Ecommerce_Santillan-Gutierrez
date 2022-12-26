@@ -37,10 +37,12 @@ namespace Administracion_web
 
             catch (Exception)
             {
-
+               
                 Response.Redirect("quienesSomos.aspx", false);
             }
             
         }
+
+
     }
 }
