@@ -56,3 +56,19 @@ PRECIO MONEY NOT NULL
 
 
 -- ****************** PROCEDIMIENTOS ALMACENADOS ******************
+Go
+CREATE PROCEDURE SP_AGREGARPRODUCTO (
+@Nombre varchar (100), 
+@Descripcion varchar (200), 
+@Tipo int, 
+@Marca int, 
+@Imagen varchar (500), 
+@Precio money
+)AS
+BEGIN 
+	INSERT INTO PRODUCTOS VALUES(@Nombre,@Descripcion, @IdTipo, @IdMarca, @Imagen, @Precio)
+	
+END 
+
+
+

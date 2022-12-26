@@ -8,8 +8,8 @@
         <% foreach (dominio.Producto item in ListaProductos)
             {%>
         <div class="col">
-            <div class="card">
-                <img src="<% = item.Imagen %>" class="card-img-top" alt="..." onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';">
+            <div class="card" style="width: 18rem;">
+                <img src="<% = item.Imagen %>" class="card-img-top img-fluid" alt="..." onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';">
                 <div class="card-body">
                     <h5 class="card-title"><% = item.Nombre %></h5>
                     <p style="color: grey;" class="card-text"><%= item.Descripcion %></p>

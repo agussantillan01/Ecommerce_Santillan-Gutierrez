@@ -67,5 +67,31 @@ namespace negocio
                 conexion.Close();
             }
         }
+
+        public void agregar(Producto nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_AGREGARPRODUCTO");
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@Tipo", nuevo.Tipo.Id);
+                datos.setearParametro("@Marca", nuevo.Marca.Id);
+                datos.setearParametro("@Imagen", nuevo.Imagen);
+                datos.setearParametro("@Precio", nuevo.Precio);
+
+                datos.ejectutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
