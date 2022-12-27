@@ -50,6 +50,28 @@ namespace negocio
             }
 
         }
-        
+
+
+
+        public void agregar(Tipo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_AGREGARTIPO");
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+
+                datos.ejectutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
