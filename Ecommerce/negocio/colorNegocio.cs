@@ -88,5 +88,29 @@ namespace negocio
                 conexion.Close();
             }
         }
+        public void agregarSP (Producto pr, Color color, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_AGREGARCOLOR_x_PRODUCTO");
+                datos.setearParametro("@IdProducto", pr.Id);
+                datos.setearParametro("@IdColor", color.Id);
+                datos.setearParametro("@Stock", cantidad);
+
+
+                datos.ejectutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

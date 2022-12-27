@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="agregarColores.aspx" />
     <Content Include="agregarTipo.aspx" />
     <Content Include="agregarMarca.aspx" />
     <Content Include="Default.aspx" />
@@ -71,9 +72,17 @@
     <Content Include="agregarProducto.aspx" />
     <Content Include="quienesSomos.aspx" />
     <Content Include="ShopTodos.aspx" />
+    <Content Include="stock.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="agregarColores.aspx.cs">
+      <DependentUpon>agregarColores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agregarColores.aspx.designer.cs">
+      <DependentUpon>agregarColores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="agregarTipo.aspx.cs">
       <DependentUpon>agregarTipo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -130,6 +139,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="stock.aspx.cs">
+      <DependentUpon>stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="stock.aspx.designer.cs">
+      <DependentUpon>stock.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

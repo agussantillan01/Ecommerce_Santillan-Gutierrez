@@ -66,9 +66,38 @@ CREATE PROCEDURE SP_AGREGARPRODUCTO (
 @Precio money
 )AS
 BEGIN 
-	INSERT INTO PRODUCTOS VALUES(@Nombre,@Descripcion, @IdTipo, @IdMarca, @Imagen, @Precio)
+	INSERT INTO PRODUCTOS VALUES(@Nombre,@Descripcion, @Tipo, @Marca, @Imagen, @Precio)
 	
 END 
+
+Go
+CREATE PROCEDURE SP_AGREGARCOLOR_x_PRODUCTO (
+@IdProducto int, 
+@IdColor int, 
+@Stock int
+)AS
+BEGIN 
+	INSERT INTO COLORES_X_PRODUCTO VALUES(@IdProducto, @IdColor,@Stock)
+	
+END 
+
+Go
+CREATE PROCEDURE SP_AGREGARMARCA (
+@Nombre varchar (100)
+)AS
+BEGIN 
+	INSERT INTO MARCAS VALUES(@Nombre)
+	
+END 
+
+Go
+CREATE PROCEDURE SP_AGREGARTIPO (
+@Nombre varchar (100)
+)AS
+BEGIN 
+	INSERT INTO TIPOS VALUES(@Nombre)
+	
+END
 
 
 
