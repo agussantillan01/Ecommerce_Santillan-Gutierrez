@@ -153,7 +153,7 @@
                         <h3>Ver todo</h3>
                         <p>Ver todos los productos</p>
                         <div class="link">
-                            <a href="verTodo.aspx">Ver todo</a>
+                            <a href="shopTodos.aspx">Ver todo</a>
                         </div>
                     </div>
                 </div>
