@@ -9,22 +9,15 @@
             <a type="submit" class="btn btn-light" href="listaProductos.aspx">Productos</a>
             <a type="submit" class="btn btn-light" href="listaMarcas.aspx">Marcas</a>
             <a type="submit" class="btn btn-light" href="listaCategorias.aspx">Categorias</a>
+            <hr />
         </div>
-        <hr />
-        <%--        <div>
-            <asp:GridView runat="server" ID="dgvListadoProductos" Style="width: 80%;" OnClass="table" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped" OnSelectedIndexChanged="dgvListadoProductos_SelectedIndexChanged">
-                <Columns>
-                    <asp:BoundField HeaderText="Producto" DataField="Nombre"/>
-                    <asp:BoundField HeaderText="Marca" DataField="Marca.Nombre"/>
-                    <asp:BoundField HeaderText="Categoria" DataField="Tipo.Nombre"/>
-                    <asp:BoundField HeaderText="Precio" DataField="Precio"/>
-                </Columns>
-            </asp:GridView>
-            <a type="submit" class="btn btn-primary" href="agregarProducto.aspx">Agregar</a>
-        </div>--%>
 
         <div>
-            <a type="submit" class="btn btn-primary" href="agregarProducto.aspx">Agregar</a>
+            <a type="submit" style="float:right;" class="btn btn-primary" href="agregarProducto.aspx">Agregar</a>
+
+        </div>
+        <div class="col-4"></div>
+        <div class="col">
             <% foreach (dominio.Producto item in ListaProductos)
                 {%>
             <div class="card mb-3" style="max-width: 540px;">
@@ -44,7 +37,8 @@
             </div>
 
 
-            <%} %>s
+            <%} %>
         </div>
+        <div class="col-4"></div>
     </div>
 </asp:Content>
