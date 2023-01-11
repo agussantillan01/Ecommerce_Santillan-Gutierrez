@@ -19,6 +19,17 @@ namespace Administracion_web
 
         protected void dgvListaMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string idSeleccionado = dgvListaMarcas.SelectedDataKey.Value.ToString();
+            Response.Redirect("agregarMarca.aspx?Id=" + idSeleccionado, false);
+        }
+
+        protected void dgvListaMarcas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            int index = Convert.ToInt32(e.CommandArgument);
+            string value = dgvListaMarcas.DataKeys[index]["Id"].ToString(); // Esto captura el ID de la marca seleccionada en ELIMINAR
+            
+
 
         }
     }

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="ColoresXproductoNegocio.cs" />
     <Compile Include="colorNegocio.cs" />
     <Compile Include="marcaNegocio.cs" />
     <Compile Include="productoNegocio.cs" />

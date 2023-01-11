@@ -10,11 +10,13 @@
             {%>
         <div class="col">
             <div class="card h-100" style="width:18rem;">
-                <img src="<% = item.Imagen %>" class="card-img-top img-fluid" alt="..." onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';">
+                <img src="<% = item.Imagen1 %>" class="card-img-top img-fluid" alt="..." onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';">
                 <div class="card-body card-heigth-xs">
                     <h5 class="card-title"><% = item.Nombre %></h5>
                     <p style="color: grey;" class="card-text"><%= item.Descripcion %></p>
-                        <a href="detalleProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">Ver Detalle</a>
+                        <a href="detalleProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">
+                            <span> Ver detalle <img style="width:20px;" src="../img/visibility.png" alt="Alternate Text" /></span>
+                        </a>
                     
                     
                 </div>

@@ -56,8 +56,9 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearProcedimiento("SP_AGREGARMARCA");
-                datos.setearParametro("@Nombre", nuevo.Nombre);
+                string valores = "values('" + nuevo.Nombre + "')";
+
+                datos.setearConsulta("insert into Marcas (Nombre) " + valores);
 
                 datos.ejectutarAccion();
 
@@ -70,6 +71,28 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public void ModificarSP(int id, Marca nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_MODIFICAMARCA");
+                datos.setearParametro("@Id", id);
+                datos.setearParametro("@Nombre", nueva.Nombre);
+
+                datos.ejectutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
 
     }

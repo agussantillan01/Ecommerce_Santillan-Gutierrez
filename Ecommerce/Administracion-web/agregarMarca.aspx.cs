@@ -16,19 +16,12 @@ namespace Administracion_web
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            if (!IsPostBack)
+            if (Request.QueryString["Id"] != null && !IsPostBack)
             {
-            //    tipoNegocio negocioTipo = new tipoNegocio();
-            //    ddlTipo.DataSource = negocioTipo.listar();
-            //    ddlTipo.DataTextField = "NOMBRE";
-            //    ddlTipo.DataValueField = "ID";
-            //    ddlTipo.DataBind();
-
-            //    marcaNegocio negocioMarca = new marcaNegocio();
-            //    ddlMarca.DataSource = negocioMarca.listar();
-            //    ddlMarca.DataTextField = "NOMBRE";
-            //    ddlMarca.DataValueField = "ID";
-            //    ddlMarca.DataBind();
+                marcaNegocio negocioMarca = new marcaNegocio();
+                int idSeleccionado = int.Parse(Request.QueryString["Id"]);
+                Marca marca = (negocioMarca.listar()).Find(x => x.Id == idSeleccionado);
+                txtNombre.Text = marca.Nombre;
             }
             
 
@@ -43,8 +36,17 @@ namespace Administracion_web
             Marca nuevo = new Marca();
             nuevo.Nombre = txtNombre.Text;
             marcaNegocio negocioMarca = new marcaNegocio();
-            negocioMarca.agregar(nuevo);
-            Response.Redirect("Default.aspx", false);
+            if (Request.QueryString["Id"]== null)
+            {
+                negocioMarca.agregar(nuevo);
+                Response.Redirect("listaMarcas.aspx", false);
+            }else
+            {
+                int id = int.Parse(Request.QueryString["Id"]);
+                negocioMarca.ModificarSP(id, nuevo);
+                Response.Redirect("listaMarcas.aspx", false);
+            }
+
 
 
 

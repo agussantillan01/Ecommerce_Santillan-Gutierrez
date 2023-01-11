@@ -20,7 +20,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT C.ID, C.NOMBRE FROM COLORES_X_PRODUCTO CXP INNER JOIN COLORES C ON CXP.IDCOLOR=C.ID WHERE CXP.IDPRODUCTO = "+ idProducto +" AND CXP.STOCK > 0";
+                comando.CommandText = "SELECT C.ID, C.NOMBRE FROM COLORES_X_PRODUCTO CXP INNER JOIN COLORES C ON CXP.IDCOLOR=C.ID WHERE CXP.IDPRODUCTO = " + idProducto + " AND CXP.STOCK > 0";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -31,7 +31,6 @@ namespace negocio
                     color.Id = (int)lector["ID"];
                     if (!(lector["NOMBRE"] is DBNull))
                         color.Nombre = (string)lector["NOMBRE"];
-
 
                     lista.Add(color);
                 }
@@ -88,29 +87,7 @@ namespace negocio
                 conexion.Close();
             }
         }
-        public void agregarSP (Producto pr, Color color, int cantidad)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setearProcedimiento("SP_AGREGARCOLOR_x_PRODUCTO");
-                datos.setearParametro("@IdProducto", pr.Id);
-                datos.setearParametro("@IdColor", color.Id);
-                datos.setearParametro("@Stock", cantidad);
-
-
-                datos.ejectutarAccion();
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
     }
+
 }
+

@@ -73,5 +73,26 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public void ModificarSP (int id, Tipo tipo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_MODIFICACATEGORIA");
+                datos.setearParametro("@Id", id);
+                datos.setearParametro("@Nombre", tipo.Nombre);
+
+                datos.ejectutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

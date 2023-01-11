@@ -23,11 +23,12 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="<% = item.Imagen %>" class="img-fluid rounded-start" onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';" alt="...">
+                        <img src="<% = item.Imagen1 %>" class="img-fluid rounded-start" onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title"><% = item.Nombre %></h5>
+                            <p style="color:grey"><% = item.Marca.Nombre %></p>
                             <p style="color: grey;" class="card-text"><%= item.Descripcion %></p>
                             <a href="agregarProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">Modificar</a>
                             <asp:Button CssClass="btn btn-danger" Text="eliminar" runat="server" />

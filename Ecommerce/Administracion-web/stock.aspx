@@ -6,11 +6,12 @@
         <div class="col-4"></div>
         <div class="col" style="text-align:center;">
             <h3 style="color:grey;">stock</h3>
-            <asp:TextBox Text="0" CssClass="form-control" ID="txtStock" runat="server" />
+            <p>Por favor ingrese la cantidad de stock...</p>
+            <asp:TextBox Text="" CssClass="form-control" ID="txtStock" runat="server" />
             <asp:Button OnClick="btnSumarStock_Click" ID="btnSumarStock" cssClass="btn btn-success" Text="+" runat="server" />
             <asp:Button OnClick="btnRestarStock_Click" Id="btnRestarStock" cssClass="btn btn-danger"  Text="-" runat="server" />
         </div>
-        <div class="col-4" style="padding-top:40px;">
+        <div class="col-4" style="padding-top:82px;">
             
             
             <asp:Button ID="btnAplicar" OnClick="btnAplicar_Click" cssClass="btn btn-outline-success" Text="Aplicar" runat="server" />

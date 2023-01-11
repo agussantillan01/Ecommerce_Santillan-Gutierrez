@@ -49,7 +49,8 @@
             <nav class="navbar navbar-expand-lg bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="Default.aspx">
-                        <h3 style="font-family: Arial; color: white;">Ecommerce</h3>
+                        <%--<h3 style="font-family: Arial; color: white;">Ecommerce</h3>--%>
+                        <img style="width:150px;" src="../img/logoEcommerce.png" alt="Alternate Text" />
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
