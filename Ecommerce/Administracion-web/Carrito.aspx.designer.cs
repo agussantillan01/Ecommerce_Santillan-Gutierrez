@@ -11,25 +11,25 @@ namespace Administracion_web
 {
 
 
-    public partial class detalleProducto
+    public partial class Carrito
     {
 
         /// <summary>
-        /// ddlColores control.
+        /// repetidor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlColores;
+        protected global::System.Web.UI.WebControls.Repeater repetidor;
 
         /// <summary>
-        /// lblStockDisponible control.
+        /// lblPrecioTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStockDisponible;
+        protected global::System.Web.UI.WebControls.Label lblPrecioTotal;
     }
 }

@@ -11,18 +11,20 @@ namespace Administracion_web
     public partial class detalleProducto : System.Web.UI.Page
     {
         public Producto prod = new Producto();
+        public Color colorSeleccionado = new Color();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                productoNegocio productoNegocio = new productoNegocio();
+                List<Producto> list = new List<Producto>();
+                list = productoNegocio.listar();
+                int idSeleccionado = int.Parse(Request.QueryString["Id"]);
+
+                prod = list.Find(x => x.Id == idSeleccionado);
                 if (!IsPostBack)
                 {
-                    productoNegocio productoNegocio = new productoNegocio();
-                    List<Producto> list = new List<Producto>();
-                    list = productoNegocio.listar();
-                    int idSeleccionado = int.Parse(Request.QueryString["Id"]);
 
-                    prod = list.Find(x => x.Id == idSeleccionado);
 
                     colorNegocio negocioColor = new colorNegocio();
                     List<Color> listColor = negocioColor.listar(idSeleccionado);
@@ -38,11 +40,31 @@ namespace Administracion_web
             catch (Exception)
             {
                
-                Response.Redirect("quienesSomos.aspx", false);
+                Response.Redirect("Error.aspx", false);
             }
             
         }
 
+        
+        protected void ddlColores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                colorNegocio negocio = new colorNegocio();
+                List<Color> lista = negocio.listarTodos();
 
+                int idColor = int.Parse(ddlColores.SelectedItem.Value);
+                colorSeleccionado = lista.Find(x => x.Id == idColor);
+                if (idColor != 0)
+            {
+
+
+
+                ColoresXproductoNegocio cxpNegocio = new ColoresXproductoNegocio();
+                List<ColoresXproducto> listacxp = cxpNegocio.listarTodo();
+                ColoresXproducto cxp = listacxp.Find(x => x.Producto.Id == prod.Id && x.Color.Id == idColor);
+
+                lblStockDisponible.Text = "Hay "+cxp.Stock.ToString()+ " Productos en stock";
+            }
+
+        }
     }
 }

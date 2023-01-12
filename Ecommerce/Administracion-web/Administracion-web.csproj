@@ -67,6 +67,7 @@
     <Content Include="agregarColores.aspx" />
     <Content Include="agregarTipo.aspx" />
     <Content Include="agregarMarca.aspx" />
+    <Content Include="Carrito.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="detalleProducto.aspx" />
     <Content Include="agregarProducto.aspx" />
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="agregarMarca.aspx.designer.cs">
       <DependentUpon>agregarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

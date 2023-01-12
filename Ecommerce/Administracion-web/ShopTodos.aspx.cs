@@ -16,8 +16,7 @@ namespace Administracion_web
         {
             productoNegocio productoNegocio = new productoNegocio();
             ListaProductos = productoNegocio.listar();
-
-
+            Session.Add("listadoProductos", ListaProductos);
         }
     }
 }

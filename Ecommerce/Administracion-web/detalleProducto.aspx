@@ -37,11 +37,15 @@
             <div style="display: inline-block; padding-left: 74px;">
                 <h5 style="padding-top: 30px;" class="card-title"><%= prod.Nombre %></h5>
                 <p class="card-text" style="font-weight: bold;"><%= prod.Marca.Nombre%></p>
+                <p class="card-text" style="font-weight: bold;"><%= prod.Tipo.Nombre%></p>
                 <p class="card-text"><%= prod.Descripcion %></p>
                 <p class="card-text"><small class="text-muted">$ <%= prod.Precio%></small></p>
-                <asp:DropDownList ID="ddlColores" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlColores" OnSelectedIndexChanged="ddlColores_SelectedIndexChanged" AutoPostBack="true" CssClass="form-select" runat="server"></asp:DropDownList>
                 <hr />
-                <a href="Carrito.aspx?id=<% = prod.Id %>">
+                <br />
+                <asp:Label Style="color:green;" Text="" ID="lblStockDisponible" runat="server" />
+                <br />
+                <a href="Carrito.aspx?id=<% = prod.Id %>&IdColor=<% = colorSeleccionado.Id%>">
                     <button class="btn btn-outline-secondary" type="button" style="text-align: center">
                         <img style="width: 20px;" src="../img/iconCarrito.png" alt="Alternate Text" />
                         <p class="card-text"><small class="text-muted"><% = prod.Precio.ToString()%></small></p>
@@ -49,7 +53,7 @@
                 </a>
 
 
-                <a href="modificaProducto.aspx?Id=<% = prod.Id %>" class="btn btn-dark">Modificar</a>
+               
             </div>
         </div>
 
