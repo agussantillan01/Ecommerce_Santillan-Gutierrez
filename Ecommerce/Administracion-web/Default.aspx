@@ -111,8 +111,8 @@
             </button>
         </div>
         <br />
-        <h3 style="font-family: Arial; text-align: center;">Productos</h3>
-        <div class="row row-cols-1 row-cols-md-3 g-4 sectionCard" >
+        <h3 style="font-family: Arial; padding-top: 80px; color: #717D7E; text-align: center;">Productos</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4 sectionCard">
             <div class="col">
                 <div class="card">
                     <div class="face front">
@@ -159,5 +159,39 @@
                 </div>
             </div>
         </div>
+    </div>
+
+        <div class="row" style="padding-top: 100px;">
+        <div class="col-1"></div>
+        <div class="col-2" style="text-align: center;">
+            <span>
+                <img style="width: 80px;" src="../img/iconEnvio.png" alt="Alternate Text" />
+            </span>
+            <div>
+                <h5 style="color: grey;">ENVIAMOS TU COMPRA</h5>
+                <p style="color: grey;">Entregas a todo el país</p>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-2" style="text-align: center;">
+            <span>
+                <img style="width: 80px;" src="../img/iconCreditCard.png" alt="Alternate Text" />
+            </span>
+            <div>
+                <h5 style="color: grey;">PAGO SENCILLO</h5>
+                <p style="color: grey;">Pagás y lo llevás</p>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-2" style="text-align: center;">
+            <span>
+                <img style="width: 80px;" src="../img/iconSecurity.png" alt="Alternate Text" />
+            </span>
+            <div>
+                <h5 style="color: grey;">COMPRÁ CON SEGURIDAD</h5>
+                <p style="color: grey;">Tus datos siempre protegidos</p>
+            </div>
+        </div>
+        <div class="col-4"></div>
     </div>
 </asp:Content>

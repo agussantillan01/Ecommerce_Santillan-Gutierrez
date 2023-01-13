@@ -22,13 +22,11 @@ namespace Administracion_web
                 int idSeleccionado = int.Parse(Request.QueryString["Id"]);
 
                 prod = list.Find(x => x.Id == idSeleccionado);
+                colorNegocio negocioColor = new colorNegocio();
                 if (!IsPostBack)
                 {
-
-
-                    colorNegocio negocioColor = new colorNegocio();
+                    
                     List<Color> listColor = negocioColor.listar(idSeleccionado);
-
                     ddlColores.DataSource = listColor;
                     ddlColores.DataValueField = "Id";
                     ddlColores.DataTextField = "Nombre";
@@ -39,21 +37,21 @@ namespace Administracion_web
 
             catch (Exception)
             {
-               
+
                 Response.Redirect("Error.aspx", false);
             }
-            
+
         }
 
-        
+
         protected void ddlColores_SelectedIndexChanged(object sender, EventArgs e)
         {
-                colorNegocio negocio = new colorNegocio();
-                List<Color> lista = negocio.listarTodos();
+            colorNegocio negocio = new colorNegocio();
+            List<Color> lista = negocio.listarTodos();
 
-                int idColor = int.Parse(ddlColores.SelectedItem.Value);
-                colorSeleccionado = lista.Find(x => x.Id == idColor);
-                if (idColor != 0)
+            int idColor = int.Parse(ddlColores.SelectedItem.Value);
+            colorSeleccionado = lista.Find(x => x.Id == idColor);
+            if (idColor != 0)
             {
 
 
@@ -62,8 +60,14 @@ namespace Administracion_web
                 List<ColoresXproducto> listacxp = cxpNegocio.listarTodo();
                 ColoresXproducto cxp = listacxp.Find(x => x.Producto.Id == prod.Id && x.Color.Id == idColor);
 
-                lblStockDisponible.Text = "Hay "+cxp.Stock.ToString()+ " Productos en stock";
+                lblStockDisponible.Text = "Hay " + cxp.Stock.ToString() + " Productos en stock";
             }
+
+        }
+
+        protected void ddlColores_DataBound(object sender, EventArgs e)
+        {
+            ddlColores.Items.Insert(0, "--Seleccione un color--");
 
         }
     }

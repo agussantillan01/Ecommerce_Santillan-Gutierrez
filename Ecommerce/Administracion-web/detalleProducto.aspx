@@ -40,7 +40,7 @@
                 <p class="card-text" style="font-weight: bold;"><%= prod.Tipo.Nombre%></p>
                 <p class="card-text"><%= prod.Descripcion %></p>
                 <p class="card-text"><small class="text-muted">$ <%= prod.Precio%></small></p>
-                <asp:DropDownList ID="ddlColores" OnSelectedIndexChanged="ddlColores_SelectedIndexChanged" AutoPostBack="true" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlColores" OnDataBound="ddlColores_DataBound" OnSelectedIndexChanged="ddlColores_SelectedIndexChanged" AutoPostBack="true" CssClass="form-select" runat="server"></asp:DropDownList>
                 <hr />
                 <br />
                 <asp:Label Style="color:green;" Text="" ID="lblStockDisponible" runat="server" />

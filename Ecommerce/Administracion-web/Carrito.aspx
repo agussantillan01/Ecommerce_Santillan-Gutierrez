@@ -12,7 +12,7 @@
 
                     </td>
                     <td>
-                        <%#Eval("Color.Nombre")%>                <%--Color--%> 
+                        <%#Eval("Color.Nombre")%>               
 
                     </td>
                     <td>
