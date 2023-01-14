@@ -17,76 +17,150 @@ namespace Administracion_web
         decimal totalAux;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((int.Parse(Request.QueryString["Id"])) > 0 && (int.Parse(Request.QueryString["IdColor"])) > 0)
+
+            ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
+            carrito = (carritoCompra)Session["total"];
+
+            if (ListaEnCarrito == null)
+                ListaEnCarrito = new List<itemCarrito>();
+            if (carrito == null)
+                carrito = new carritoCompra();
+
+            if (!IsPostBack)
             {
-                ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
-                carrito = (carritoCompra)Session["total"];
-
-                if (ListaEnCarrito == null)
-                    ListaEnCarrito = new List<itemCarrito>();
-                if (carrito == null)
-                    carrito = new carritoCompra();
-
-                if (!IsPostBack)
+                if (Request.QueryString["Id"] != null && Request.QueryString["IdColor"] != null)
                 {
-                    if (Request.QueryString["Id"] != null && Request.QueryString["IdColor"] != null)
+                    if (ListaEnCarrito.Find(x => x.item.Id.ToString() == Request.QueryString["Id"] && x.color.Id.ToString() == Request.QueryString["IdColor"]) == null)
                     {
-                        if (ListaEnCarrito.Find(x => x.item.Id.ToString() == Request.QueryString["Id"] && x.color.Id.ToString() == Request.QueryString["IdColor"]) == null)
+                        List<Producto> listadoOriginal = (List<Producto>)Session["listadoProductos"];
+
+                        colorNegocio colorNegocio = new colorNegocio();
+                        List<Color> colorListaTotal = colorNegocio.listarTodos();
+
+                        itemCarrito aux = new itemCarrito();
+
+                        if (aux.cantidad == 0)
                         {
-                            List<Producto> listadoOriginal = (List<Producto>)Session["listadoProductos"];
-
-                            colorNegocio colorNegocio = new colorNegocio();
-                            List<Color> colorListaTotal = colorNegocio.listarTodos();
-
-                            itemCarrito aux = new itemCarrito();
-
-                            if (aux.cantidad == 0)
-                            {
-                                aux.cantidad = 1;
-                            }
-                            aux.item = listadoOriginal.Find(x => x.Id.ToString() == Request.QueryString["Id"]);
-                            aux.color = colorListaTotal.Find(x => x.Id.ToString() == Request.QueryString["IdColor"]);
-                            aux.subtotal = aux.cantidad * aux.item.Precio;
-                            aux.id = aux.item.Id;
-
-                            carrito.total += aux.item.Precio;
-
-                            lblPrecioTotal.Text = "Total: " + carrito.total.ToString();
-
-                            ListaEnCarrito.Add(aux);
-
-
+                            aux.cantidad = 1;
                         }
+                        aux.item = listadoOriginal.Find(x => x.Id.ToString() == Request.QueryString["Id"]);
+                        aux.color = colorListaTotal.Find(x => x.Id.ToString() == Request.QueryString["IdColor"]);
+                        aux.subtotal = aux.cantidad * aux.item.Precio;
+                        aux.id = aux.item.Id;
 
-                        carrito.listado = ListaEnCarrito;
+                        carrito.total += aux.item.Precio;
+
+                        lblPrecioTotal.Text = "Total: " + carrito.total.ToString();
+
+                        ListaEnCarrito.Add(aux);
 
 
                     }
-                    repetidor.DataSource = ListaEnCarrito;
-                    repetidor.DataBind();
+
+                    carrito.listado = ListaEnCarrito;
+
 
                 }
-
-                lblPrecioTotal.Text = "$ Total: " + carrito.total.ToString();
-                Session.Add("listaEnCarro", ListaEnCarrito);
-                Session.Add("total", carrito);
+                repetidor.DataSource = ListaEnCarrito;
+                repetidor.DataBind();
 
             }
-            else
-            {
-                Response.Redirect("quienesSomos.aspx", false);
-            }
-            
+
+            lblPrecioTotal.Text = "$ Total: " + carrito.total.ToString();
+            Session.Add("listaEnCarro", ListaEnCarrito);
+            Session.Add("total", carrito);
+
         }
+
 
         protected void btnInc_Click(object sender, EventArgs e)
         {
+            carrito = (carritoCompra)Session["Total"];
+            totalAux = 0;
+            string[] argument = ((Button)sender).CommandArgument.Split(',');
+            List<itemCarrito> ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
+            itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0].ToString() && x.color.Id.ToString() == argument[1].ToString());
 
+
+            sobrecarga.cantidad++;
+            sobrecarga.subtotal = sobrecarga.item.Precio * sobrecarga.cantidad;
+
+            foreach (itemCarrito item in ListaEnCarrito)
+            {
+
+                if (item.id.ToString() == argument[0] && item.color.Id.ToString() == argument[1])
+                {
+                    item.id = sobrecarga.id;
+                    item.item = sobrecarga.item;
+                    item.color = sobrecarga.color;
+                    item.cantidad = sobrecarga.cantidad;
+                    item.subtotal = sobrecarga.subtotal;
+
+                }
+
+                totalAux += item.subtotal;
+
+            }
+
+            carrito.total = totalAux;
+
+            lblPrecioTotal.Text = "Total: " + carrito.total.ToString();
+
+            Session.Add("listaEnCarro", ListaEnCarrito);
+            Session.Add("Total", carrito);
+            repetidor.DataSource = null;
+            repetidor.DataSource = ListaEnCarrito;
+            repetidor.DataBind();
+
+            Response.Redirect("Carrito.aspx");
         }
 
         protected void btnDec_Click(object sender, EventArgs e)
         {
+            carrito = (carritoCompra)Session["Total"];
 
+            totalAux = 0;
+
+
+            string[] argument = ((Button)sender).CommandArgument.Split(',');
+            List<itemCarrito> ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
+            itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0] && x.color.Id.ToString() == argument[1]);
+            if (sobrecarga.cantidad > 1)
+            {
+                sobrecarga.cantidad--;
+                sobrecarga.subtotal = sobrecarga.item.Precio * sobrecarga.cantidad;
+                foreach (itemCarrito item in ListaEnCarrito)
+                {
+                    if (item.id.ToString() == argument[0] && item.color.Id.ToString() == argument[1])
+                    {
+                        item.id = sobrecarga.id;
+                        item.item = sobrecarga.item;
+                        item.color = sobrecarga.color;
+                        item.cantidad = sobrecarga.cantidad;
+                        item.subtotal = sobrecarga.subtotal;
+
+
+                    }
+
+                    totalAux += item.subtotal;
+                }
+               
+
+
+                carrito.total = totalAux;
+
+                lblPrecioTotal.Text = "Total: " + carrito.total.ToString();
+
+
+                Session.Add("listaEnCarro", ListaEnCarrito);
+                Session.Add("Total", carrito);
+                repetidor.DataSource = null;
+                repetidor.DataSource = ListaEnCarrito;
+                repetidor.DataBind();
+
+                Response.Redirect("Carrito.aspx");
+
+            }
         }
     }
 }

@@ -21,9 +21,9 @@
                     <td>
                         <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group" role="group" aria-label="First group">
-                                <asp:Button Text="+" ID="btnInc" type="Button" AutoPostback="true" OnClick="btnInc_Click" class="btn btn-secondary" CommandArgument='<%#Eval("Id") %>' runat="server" />
+                                <asp:Button Text="+" ID="btnInc" type="Button" AutoPostback="true" OnClick="btnInc_Click" class="btn btn-secondary" CommandArgument='<%#Eval("Id")+ ","+ Eval("color.Id")%>' runat="server" />
                                 <asp:Button Text='<%#Eval("cantidad")%>' type="text" cssClass="btn btn-secondary" AutoPostBack="true" CommandArgument='<%#Eval("Id")%>'  runat="server" />
-                                <asp:Button Text="-" ID="btnDec" type="Button" CssClass="btn btn-secondary" AutoPostBack="true" OnClick="btnDec_Click" CommandArgument='<%#Eval("Id")%>' runat="server" />                            </div>
+                                <asp:Button Text="-" ID="btnDec" type="Button" CssClass="btn btn-secondary" AutoPostBack="true" OnClick="btnDec_Click" CommandArgument='<%#Eval("Id")+ ","+ Eval("color.Id")%>' runat="server" />                            </div>
                         </div>
 
                     </td>

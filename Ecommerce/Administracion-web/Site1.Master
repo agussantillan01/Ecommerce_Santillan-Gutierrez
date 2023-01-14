@@ -4,7 +4,8 @@
 
 <html>
 <head runat="server">
-    <title>Ecommerce</title>
+        <link href="./img/iconPestañaEcommerce.png" rel="icon" />
+    <title>Store Digital</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <!-- BOOTSTRAP -->
@@ -34,7 +35,8 @@
         footer {
             background: black;
             color: grey;
-            padding: 1em 0;
+            /*padding: 1em 0;*/
+            padding:0.0008px;
             position: absolute;
             bottom: 0;
             width: 100%;
