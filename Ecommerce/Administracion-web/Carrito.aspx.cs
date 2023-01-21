@@ -95,7 +95,7 @@ namespace Administracion_web
                     item.color = sobrecarga.color;
                     item.cantidad = sobrecarga.cantidad;
                     item.subtotal = sobrecarga.subtotal;
-                    item.color.Id = int.Parse(Request.QueryString["IdColor"]);
+                    
 
                 }
 
