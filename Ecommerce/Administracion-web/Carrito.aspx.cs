@@ -95,6 +95,7 @@ namespace Administracion_web
                     item.color = sobrecarga.color;
                     item.cantidad = sobrecarga.cantidad;
                     item.subtotal = sobrecarga.subtotal;
+                    item.color.Id = int.Parse(Request.QueryString["IdColor"]);
 
                 }
 
@@ -138,6 +139,7 @@ namespace Administracion_web
                         item.color = sobrecarga.color;
                         item.cantidad = sobrecarga.cantidad;
                         item.subtotal = sobrecarga.subtotal;
+                        
 
 
                     }
@@ -162,5 +164,41 @@ namespace Administracion_web
 
             }
         }
+
+        protected void btnComprar_Click(object sender, EventArgs e)
+        {
+            CompraNegocio negocioCompra = new CompraNegocio(); 
+            negocioCompra.registroCompra (carrito);
+
+            List<carritoCompra> listaTotal = negocioCompra.listar();
+            int ultimoIndice= listaTotal.Count();
+            carritoCompra ultimo = listaTotal[ultimoIndice - 1];
+
+            foreach (var item in carrito.listado)
+            {
+                negocioCompra.agregarDetalleXventa(item, ultimo.Id);
+
+            }
+
+            Response.Redirect("Default.aspx", false);
+
+
+            limpraLista();
+
+        }
+        private void limpraLista() {
+            carrito = null; 
+            ListaEnCarrito = null;
+
+            Session.Add("listaEnCarrito", ListaEnCarrito);
+            Session.Add("carrito", carrito);
+            Session.Add("listaEnCarro", null);
+            Session.Add("total", null);
+
+
+
+        }
+
+        
     }
 }

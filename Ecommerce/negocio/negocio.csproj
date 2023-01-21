@@ -44,6 +44,7 @@
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="ColoresXproductoNegocio.cs" />
     <Compile Include="colorNegocio.cs" />
+    <Compile Include="CompraNegocio.cs" />
     <Compile Include="marcaNegocio.cs" />
     <Compile Include="productoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

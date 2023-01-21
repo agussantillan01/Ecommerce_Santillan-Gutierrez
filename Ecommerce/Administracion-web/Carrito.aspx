@@ -34,8 +34,12 @@
 
             </ItemTemplate>
         </asp:Repeater>
-
     </table>
 
     <asp:Label Text="" ID="lblPrecioTotal" runat="server" />
+
+    <div Style="padding-top: 30px;">
+     <asp:Button Text="Comprar"  CssClass="btn btn-success" Id="btnComprar" OnClick="btnComprar_Click" runat="server" />
+
+    </div>
 </asp:Content>
