@@ -95,5 +95,28 @@ namespace negocio
 
         }
 
+        public void eliminarConSP(int ID)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                Producto aux = new Producto();
+                datos.setearProcedimiento("SP_EliminaMarca");
+                datos.setearParametro("@Id", ID);
+
+                datos.ejectutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
     }
 }

@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Error.aspx" />
     <Content Include="agregarColores.aspx" />
     <Content Include="agregarTipo.aspx" />
     <Content Include="agregarMarca.aspx" />
@@ -74,12 +75,20 @@
     <Content Include="listaCategorias.aspx" />
     <Content Include="listaMarcas.aspx" />
     <Content Include="listaProductos.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="quienesSomos.aspx" />
     <Content Include="ShopTodos.aspx" />
     <Content Include="stock.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="agregarColores.aspx.cs">
       <DependentUpon>agregarColores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -151,6 +160,13 @@
       <DependentUpon>listaProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="quienesSomos.aspx.cs">
       <DependentUpon>quienesSomos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -199,6 +215,9 @@
       <Project>{67e0a4c5-e703-4508-9171-ae3b09462ed5}</Project>
       <Name>negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

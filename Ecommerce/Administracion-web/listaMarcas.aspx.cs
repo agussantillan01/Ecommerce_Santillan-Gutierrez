@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,10 @@ namespace Administracion_web
 {
     public partial class listaMarcas : System.Web.UI.Page
     {
+        public bool confirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            confirmaEliminacion = false;
             marcaNegocio negocio = new marcaNegocio();
             dgvListaMarcas.DataSource = negocio.listar();
             dgvListaMarcas.DataBind();
@@ -28,9 +31,61 @@ namespace Administracion_web
 
             int index = Convert.ToInt32(e.CommandArgument);
             string value = dgvListaMarcas.DataKeys[index]["Id"].ToString(); // Esto captura el ID de la marca seleccionada en ELIMINAR
+              
+                confirmaEliminacion = true;
             
 
 
+        }
+
+
+        protected void btnConfirmaEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkConfirmarEliminacion.Checked)
+                {
+                    marcaNegocio negocioMarca = new marcaNegocio();
+                    int idSeleccionado = int.Parse(Request.QueryString["Id"]);
+          
+
+
+                    ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
+                    List<ColoresXproducto> lista = negocio.listarTodo();
+
+                    foreach (var item in lista)
+                    {
+
+
+                        if (item.Producto.Marca.Id == idSeleccionado || item.Producto.Marca == null)
+                        {
+                            if (item.Stock == 0)
+                            {
+                                negocioMarca.eliminarConSP(idSeleccionado);
+                                Response.Redirect(".aspx");
+
+                                break;
+                            }
+                            else
+                            {
+                                Session.Add("Error", "No se ha podido eliminar la marca ya que aún cuenta con stock");
+                                Response.Redirect("Error.aspx", false);
+
+                                break;
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                //Session.Add("Error", "No se ha podido actualizar los prodcuto");
+                //Response.Redirect("Error.aspx", false);
+            }
         }
     }
 }

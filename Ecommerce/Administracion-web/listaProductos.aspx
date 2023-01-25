@@ -31,8 +31,15 @@
                             <p style="color:grey"><% = item.Marca.Nombre %></p>
                             <p style="color: grey;" class="card-text"><%= item.Descripcion %></p>
                             <a href="agregarProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">Modificar</a>
-                            <asp:Button CssClass="btn btn-danger" Text="eliminar" runat="server" />
+                            <asp:Button  ID="btnEliminar" OnClick="btnEliminar_Click" Text="Eliminar" runat="server" />
                         </div>
+                                                      <%  if (confirmaEliminacion)
+                        { %>
+                    <div>
+                        <asp:CheckBox AutoPosback="true" Text="Confirmar eliminacion" ID="chkConfirmarEliminacion" runat="server" />
+                        <asp:Button Text="Eliminar" ID="btnConfirmaEliminar" OnClick="btnConfirmaEliminar_Click" CssClass="btn btn-danger" runat="server" />
+                    </div>
+                    <% }  %>
                     </div>
                 </div>
             </div>

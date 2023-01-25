@@ -22,9 +22,18 @@
                 <Columns >
                     <asp:BoundField HeaderText="Marca" DataField="Nombre" />
                     <asp:CommandField HeaderText="Modifica" ControlStyle-CssClass="btn btn-primary" ShowSelectButton="true" SelectText="Modificar" />
-                   <asp:ButtonField ControlStyle-CssClass="btn btn-danger" ButtonType="Button" Text="Eliminar"/>
+                    <asp:ButtonField  Text="Eliminar" runat="server" />
+
                 </Columns>
             </asp:GridView>
+
+                                <%  if (confirmaEliminacion)
+                        { %>
+                    <div>
+                        <asp:CheckBox AutoPosback="true" Text="Confirmar eliminacion" ID="chkConfirmarEliminacion" runat="server" />
+                        <asp:Button Text="Eliminar" ID="btnConfirmaEliminar" OnClick="btnConfirmaEliminar_Click" CssClass="btn btn-danger" runat="server" />
+                    </div>
+                    <% }  %>
 
         </div>
         <div class="col-4"></div>

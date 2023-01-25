@@ -12,10 +12,13 @@ namespace Administracion_web
     
     public partial class modificaMarca : System.Web.UI.Page
     {
-        
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+
             if (Request.QueryString["Id"] != null && !IsPostBack)
             {
                 marcaNegocio negocioMarca = new marcaNegocio();
@@ -51,5 +54,7 @@ namespace Administracion_web
 
 
         }
+
+ 
     }
 }
