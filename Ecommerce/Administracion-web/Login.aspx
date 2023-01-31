@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Administracion_web.Login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="administracion_web.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -8,7 +8,7 @@
     <br />
     <br />
     <div class="text-center">
-        <img style="width: 250px;" src="https://www.nicepng.com/png/detail/107-1074679_dental-implant-logo.png" class="rounded" alt="...">
+        <img style="width: 250px;"src="../img/iconPestañaEcommerce.png" class="rounded" alt="...">
     </div>
 
     <div class="row">

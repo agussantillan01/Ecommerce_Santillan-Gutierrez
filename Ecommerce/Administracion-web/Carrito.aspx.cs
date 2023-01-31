@@ -189,7 +189,7 @@ namespace Administracion_web
         private void limpraLista() {
             carrito = null; 
             ListaEnCarrito = null;
-
+            Session.Add("CantidadCarrito", 0);
             Session.Add("listaEnCarrito", ListaEnCarrito);
             Session.Add("carrito", carrito);
             Session.Add("listaEnCarro", null);

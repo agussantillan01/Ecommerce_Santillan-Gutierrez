@@ -2,69 +2,65 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace negocio
 {
     public class ColoresXproductoNegocio
     {
 
-        //public List<ColoresXproducto> listar()
-        //{
-        //    List<ColoresXproducto> lista = new List<ColoresXproducto>();
-        //    SqlConnection conexion = new SqlConnection();
-        //    SqlCommand comando = new SqlCommand();
-        //    SqlDataReader lector;
-        //    try
-        //    {
-        //        conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
-        //        comando.CommandType = System.Data.CommandType.Text;
-          
-              
-        //            comando.CommandText = "SELECT P.ID AS IDPRODUCTO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, C.STOCK, C.IDCOLOR FROM PRODUCTOS P INNER JOIN MARCAS M ON M.ID = P.IDMARCA INNER JOIN COLORES_X_PRODUCTO C ON C.IDPRODUCTO = P.ID";
+        public List<ColoresXproducto> listarL()
+        {
+            List<ColoresXproducto> lista = new List<ColoresXproducto>();
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            try
+            {
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
+                comando.CommandType = System.Data.CommandType.Text;
 
 
-     
-        //        comando.Connection = conexion;
-        //        conexion.Open();
-
-        //        lector = comando.ExecuteReader();
-        //        while (lector.Read())
-        //        {
-        //            ColoresXproducto prod = new ColoresXproducto();
-        //            prod.Stock = (int)lector["STOCK"];
-
-        //            prod.Color = new Color();
-        //            prod.Color.Id = (int)lector["IDCOLOR"];
-
-        //            prod.Producto = new Producto();
-        //            prod.Producto.Id = (int)lector["IDPRODUCTO"];
-        
-        //            prod.Producto.Marca = new Marca();
-        //            prod.Producto.Marca.Id = (int)lector["IDMARCA"];
-        //            prod.Producto.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                comando.CommandText = "SELECT P.ID AS IDPRODUCTO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, C.STOCK, C.IDCOLOR FROM PRODUCTOS P INNER JOIN MARCAS M ON M.ID = P.IDMARCA INNER JOIN COLORES_X_PRODUCTO C ON C.IDPRODUCTO = P.ID";
 
 
-        //            lista.Add(prod);
-        //        }
 
-        //        //conexion.Close();
-        //        return lista;
-        //    }
-        //    catch (Exception ex)
-        //    {
+                comando.Connection = conexion;
+                conexion.Open();
 
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        conexion.Close();
-        //    }
+                lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    ColoresXproducto prod = new ColoresXproducto();
+                    prod.Stock = (int)lector["STOCK"];
 
-        //}
+                    prod.Color = new Color();
+                    prod.Color.Id = (int)lector["IDCOLOR"];
+
+                    prod.Producto = new Producto();
+                    prod.Producto.Id = (int)lector["IDPRODUCTO"];
+
+                    prod.Producto.Marca = new Marca();
+                    prod.Producto.Marca.Id = (int)lector["IDMARCA"];
+                    prod.Producto.Marca.Nombre = (string)lector["NOMBREMARCA"];
+
+
+                    lista.Add(prod);
+                }
+
+                //conexion.Close();
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+        }
 
         public void agregarSP(ColoresXproducto cxp)
         {
@@ -159,7 +155,7 @@ namespace negocio
         }
         public ColoresXproducto Listar(Producto pr, Color color)
         {
-            
+
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -171,11 +167,11 @@ namespace negocio
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    
+
                     cxp.Producto = pr;
                     cxp.Color = color;
                     cxp.Stock = (int)datos.Lector["STOCK"];
-                    
+
 
                 }
                 return cxp;

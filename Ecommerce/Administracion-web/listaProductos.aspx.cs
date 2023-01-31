@@ -29,12 +29,13 @@ namespace Administracion_web
         protected void dgvListadoProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-    
 
         }
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-                confirmaEliminacion = true;
+            int idSeleccionado = int.Parse(Request.QueryString["Id"].ToString());
+            Session.Add("idProductoEliminar", idSeleccionado);///ACA TENGO EL ERROR
+            confirmaEliminacion = true;
 
         }
 
@@ -48,12 +49,14 @@ namespace Administracion_web
                 if (chkConfirmarEliminacion.Checked)
                 {
                     productoNegocio negocioProducto = new productoNegocio();
-                    int idSeleccionado = int.Parse(Request.QueryString["Id"]); ///ACA TENGO EL ERROR
+         
+                 
+                   
+                      int idSeleccionado = int.Parse(Session["idProductoEliminar"].ToString());
 
 
-
-                    ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
-                    List<ColoresXproducto> lista = negocio.listarTodo();
+                        ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
+                    List<ColoresXproducto> lista = negocio.listarL();
 
                     foreach (var item in lista)
                     {
@@ -70,7 +73,7 @@ namespace Administracion_web
                             }
                             else
                             {
-                                Session.Add("Error", "No se ha podido eliminar la marca ya que aún cuenta con stock");
+                                Session.Add("Error", "No se ha podido eliminar el producto, ya que aún cuenta con stock");
                                 Response.Redirect("Error.aspx", false);
 
                                 break;

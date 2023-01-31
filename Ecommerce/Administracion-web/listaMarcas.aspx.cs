@@ -2,6 +2,7 @@
 using negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -24,13 +25,16 @@ namespace Administracion_web
         {
             string idSeleccionado = dgvListaMarcas.SelectedDataKey.Value.ToString();
             Response.Redirect("agregarMarca.aspx?Id=" + idSeleccionado, false);
+       
         }
 
         protected void dgvListaMarcas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
             int index = Convert.ToInt32(e.CommandArgument);
-            string value = dgvListaMarcas.DataKeys[index]["Id"].ToString(); // Esto captura el ID de la marca seleccionada en ELIMINAR
+            int idSeleccionado = int.Parse(dgvListaMarcas.DataKeys[index]["Id"].ToString());
+            Session.Add("idMarcaEliminar", idSeleccionado);
+   ///         string value = dgvListaMarcas.DataKeys[index]["Id"].ToString(); // Esto captura el ID de la marca seleccionada en ELIMINAR
               
                 confirmaEliminacion = true;
             
@@ -45,13 +49,14 @@ namespace Administracion_web
             {
                 if (chkConfirmarEliminacion.Checked)
                 {
+                    int idSeleccionado = int.Parse(Session["idMarcaEliminar"].ToString());
                     marcaNegocio negocioMarca = new marcaNegocio();
-                    int idSeleccionado = int.Parse(Request.QueryString["Id"]);
+
           
 
 
                     ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
-                    List<ColoresXproducto> lista = negocio.listarTodo();
+                    List<ColoresXproducto> lista = negocio.listarL();
 
                     foreach (var item in lista)
                     {
@@ -62,7 +67,7 @@ namespace Administracion_web
                             if (item.Stock == 0)
                             {
                                 negocioMarca.eliminarConSP(idSeleccionado);
-                                Response.Redirect(".aspx");
+                                Response.Redirect("listaMarcas.aspx");
 
                                 break;
                             }

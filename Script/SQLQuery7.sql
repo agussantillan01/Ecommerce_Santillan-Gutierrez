@@ -239,3 +239,35 @@ DECLARE @StockActualizado int
 SET @StockActualizado = (@Stock-@Cantidad)
 Update COLORES_X_PRODUCTO set STOCK = @StockActualizado WHERE IDCOLOR=@IdColor AND IDPRODUCTO=@IdProducto
 END 
+
+
+--ELIMINA MARCA
+go
+Create Procedure SP_EliminaMarca(@Id bigint)
+as
+Begin
+delete MARCAS Where ID = @Id
+end
+
+go 
+--ELIMINA CATEGORIA
+go
+Create Procedure SP_EliminaTipo(@Id bigint)
+as
+Begin
+delete TIPOS Where ID = @Id
+end
+--ELIMINA Producto
+go
+Create Procedure SP_EliminaProducto(@Id bigint)
+as
+Begin
+delete PRODUCTOS Where ID = @Id
+end
+
+
+
+insert into COLORES (NOMBRE)  values ('ROJO')
+
+
+)

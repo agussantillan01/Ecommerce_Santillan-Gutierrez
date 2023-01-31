@@ -30,7 +30,7 @@
                                 <%  if (confirmaEliminacion)
                         { %>
                     <div>
-                        <asp:CheckBox AutoPosback="true" Text="Confirmar eliminacion" ID="chkConfirmarEliminacion" runat="server" />
+                        <asp:CheckBox AutoPosback="false" Text="Confirmar eliminacion" ID="chkConfirmarEliminacion" runat="server" />
                         <asp:Button Text="Eliminar" ID="btnConfirmaEliminar" OnClick="btnConfirmaEliminar_Click" CssClass="btn btn-danger" runat="server" />
                     </div>
                     <% }  %>

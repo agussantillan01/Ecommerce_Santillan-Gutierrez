@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CreaCuenta.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="agregarColores.aspx" />
     <Content Include="agregarTipo.aspx" />
@@ -82,6 +83,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreaCuenta.aspx.cs">
+      <DependentUpon>CreaCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreaCuenta.aspx.designer.cs">
+      <DependentUpon>CreaCuenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

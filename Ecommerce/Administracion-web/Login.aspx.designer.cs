@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Administracion_web
+namespace administracion_web
 {
 
 

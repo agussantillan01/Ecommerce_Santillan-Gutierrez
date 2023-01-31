@@ -30,7 +30,8 @@ namespace Administracion_web
         protected void dgvlistaCategoria_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            string value = dgvlistaCategoria.DataKeys[index]["Id"].ToString(); // Esto captura el ID de la categoria seleccionada en ELIMINAR
+            int idSeleccionado = int.Parse(dgvlistaCategoria.DataKeys[index]["Id"].ToString());
+            Session.Add("idCategoriaEliminar", idSeleccionado);
             confirmaEliminacion = true;
 
         }
@@ -42,12 +43,11 @@ namespace Administracion_web
                 if (chkConfirmarEliminacion.Checked)
                 {
                     tipoNegocio negocioTipo = new tipoNegocio();
-                    int idSeleccionado = int.Parse(Request.QueryString["Id"]);
-
-
+                    int idSeleccionado = int.Parse(Session["idCategoriaEliminar"].ToString());
+    
 
                     ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
-                    List<ColoresXproducto> lista = negocio.listarTodo();
+                    List<ColoresXproducto> lista = negocio.listarL();
 
                     foreach (var item in lista)
                     {
@@ -64,7 +64,7 @@ namespace Administracion_web
                             }
                             else
                             {
-                                Session.Add("Error", "No se ha podido eliminar la marca ya que aún cuenta con stock");
+                                Session.Add("Error", "No se ha podido eliminar la categoria, ya que aún cuenta con stock");
                                 Response.Redirect("Error.aspx", false);
 
                                 break;
