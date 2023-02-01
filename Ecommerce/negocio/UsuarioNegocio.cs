@@ -15,6 +15,8 @@ namespace negocio
             try
             {
                 datos.setearConsulta("Select IdUsuario,TipoUser from Usuarios Where Email=@Email AND Contraseña=@Contraseña");
+                datos.setearParametro("@NOMBRE", usuario.Nombre);
+                datos.setearParametro("@APELLIDO", usuario.Apellido);
                 datos.setearParametro("@Email", usuario.Email);
                 datos.setearParametro("@Contraseña", usuario.Contraseña);
 
@@ -47,6 +49,8 @@ namespace negocio
             try
             {
                 datos.setearProcedimiento("SP_AgregarUsuario");
+                datos.setearParametro("@NOMBRE", usuario.Nombre);
+                datos.setearParametro("@APELLIDO", usuario.Apellido);
                 datos.setearParametro("@Email", usuario.Email);
                 datos.setearParametro("@Contraseña", usuario.Contraseña);
                 return datos.ejecutarAccionScalar();

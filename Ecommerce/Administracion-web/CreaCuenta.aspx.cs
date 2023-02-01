@@ -33,6 +33,8 @@ namespace administracion_web
                 if (!seEncontroEmail && txtEmail.Text != null && txtConstraseña.Text != null)
                 {
                     usuario = new Usuario(txtEmail.Text, txtConstraseña.Text, false);
+                    usuario.Nombre = txtNombre.Text;
+                    usuario.Apellido = txtApellido.Text;
                     usuario.Email = txtEmail.Text;
                     usuario.Contraseña = txtConstraseña.Text;
 

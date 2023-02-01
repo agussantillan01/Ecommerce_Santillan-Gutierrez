@@ -77,14 +77,15 @@
                         <div class="navbar-nav palabrasNavBar">
                             <a style="color: white"; class="nav-link active" aria-current="page" href="ShopTodos.aspx">SHOP</a>
                             <a style="color: white;" class="nav-link active" aria-current="page" href="quienesSomos.aspx">Quienes Somos</a>
-
+                          <%--  ACA VALIDAR PARA Q SOLO LOS COMPRADORES PUEDAN VER ESTO--%>
+                            <a style="color: dodgerblue;" class="nav-link active" aria-current="page" href="MisCompras.aspx">Mis Compras</a>
                         </div>
                     </div>
                 </div>
                 <div class="navbar-nav" style="float: right; padding-right: 3px;">
                     <a class="nav-link" style="color: white;" href="listaProductos.aspx"><i class="fa-sharp fa-solid fa-gear"></i></a>
                     <a class="nav-link" style="color: white;" href="Carrito.aspx">Carrito(<%#Eval("CantidadCarrito")%> )</a>
-                    <a class="nav-link btn btn-outline-success" style="color: white;" href="#">Login</a>
+                    <a class="nav-link btn btn-outline-success" style="color: white;" href="Login.aspx">Login</a>
 
                 </div>
             </nav>

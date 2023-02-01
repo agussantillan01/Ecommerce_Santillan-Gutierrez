@@ -15,6 +15,10 @@ namespace dominio
     public class Usuario
     {
         public Int64 Id { get; set; }
+
+        public string Nombre { get; set; }
+
+        public string Apellido { get; set; }
         public string Email { get; set; }
         public string Contraseña { get; set; }
         public TipoUsuario TipoUsuario { get; set; }

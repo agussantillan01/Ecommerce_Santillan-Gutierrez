@@ -13,11 +13,12 @@ namespace Administracion_web
     {
         public carritoCompra carrito = new carritoCompra();
         public List<itemCarrito> ListaEnCarrito;
+        int inc = 0;
 
         decimal totalAux;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
             ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
             carrito = (carritoCompra)Session["total"];
 
@@ -67,6 +68,7 @@ namespace Administracion_web
             }
 
             lblPrecioTotal.Text = "$ Total: " + carrito.total.ToString();
+            Session.Add("CantidadCarrito",inc);
             Session.Add("listaEnCarro", ListaEnCarrito);
             Session.Add("total", carrito);
 
@@ -75,12 +77,13 @@ namespace Administracion_web
 
         protected void btnInc_Click(object sender, EventArgs e)
         {
+
             carrito = (carritoCompra)Session["Total"];
             totalAux = 0;
             string[] argument = ((Button)sender).CommandArgument.Split(',');
             List<itemCarrito> ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
             itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0].ToString() && x.color.Id.ToString() == argument[1].ToString());
-
+            //FALTA ACA Q SUME PARA Q CAMBIE EL VALOR DEL CANT DE CARRITO
 
             sobrecarga.cantidad++;
             sobrecarga.subtotal = sobrecarga.item.Precio * sobrecarga.cantidad;
@@ -109,6 +112,7 @@ namespace Administracion_web
 
             Session.Add("listaEnCarro", ListaEnCarrito);
             Session.Add("Total", carrito);
+  
             repetidor.DataSource = null;
             repetidor.DataSource = ListaEnCarrito;
             repetidor.DataBind();
