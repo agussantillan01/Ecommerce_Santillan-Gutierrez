@@ -20,7 +20,7 @@
                 <Columns>
                     <asp:BoundField HeaderText="Categoria" DataField="Nombre" />
                     <asp:CommandField HeaderText="Modifica" ControlStyle-CssClass="btn btn-primary" ShowSelectButton="true" SelectText="Modificar" />
-                   <asp:ButtonField ButtonType="Button" Text="Eliminar"/>
+                   <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn btn-danger" Text="Eliminar"/>
                     
                 </Columns>
             </asp:GridView>

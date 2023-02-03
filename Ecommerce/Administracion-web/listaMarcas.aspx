@@ -22,7 +22,7 @@
                 <Columns >
                     <asp:BoundField HeaderText="Marca" DataField="Nombre" />
                     <asp:CommandField HeaderText="Modifica" ControlStyle-CssClass="btn btn-primary" ShowSelectButton="true" SelectText="Modificar" />
-                    <asp:ButtonField  Text="Eliminar" runat="server" />
+                    <asp:ButtonField  Text="Eliminar" ControlStyle-CssClass="btn btn-danger" runat="server" />
 
                 </Columns>
             </asp:GridView>

@@ -62,6 +62,7 @@ namespace negocio
 
         }
 
+
         public void agregarSP(ColoresXproducto cxp)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -187,6 +188,37 @@ namespace negocio
             }
 
         }
+
+        public int sumaStockXProducto(int idProducto) 
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "Select SUM(CXP.STOCK) from COLORES_X_PRODUCTO CXP WHERE IDPRODUCTO= " + idProducto;
+                comando.Connection = conexion;
+                conexion.Open();
+
+                int result = (int)comando.ExecuteScalar();
+
+
+
+                //conexion.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
 
         //public void eliminarConSP(int ID)
         //{
