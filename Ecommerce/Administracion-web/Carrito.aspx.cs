@@ -14,6 +14,7 @@ namespace Administracion_web
         public carritoCompra carrito = new carritoCompra();
         public List<itemCarrito> ListaEnCarrito;
         int inc = 0;
+       public int cantidadProductosCarrito = 0;
 
         decimal totalAux;
         protected void Page_Load(object sender, EventArgs e)
@@ -26,6 +27,8 @@ namespace Administracion_web
                 ListaEnCarrito = new List<itemCarrito>();
             if (carrito == null)
                 carrito = new carritoCompra();
+            
+            
 
             if (!IsPostBack)
             {
@@ -34,7 +37,8 @@ namespace Administracion_web
                     if (ListaEnCarrito.Find(x => x.item.Id.ToString() == Request.QueryString["Id"] && x.color.Id.ToString() == Request.QueryString["IdColor"]) == null)
                     {
                         List<Producto> listadoOriginal = (List<Producto>)Session["listadoProductos"];
-
+                        cantidadProductosCarrito++;
+                        Session.Add("cantidadProductosCarrito", cantidadProductosCarrito);
                         colorNegocio colorNegocio = new colorNegocio();
                         List<Color> colorListaTotal = colorNegocio.listarTodos();
 

@@ -7,9 +7,10 @@ ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 NOMBRE VARCHAR (100) NULL, 
 APELLIDO VARCHAR (100) NULL, 
 EMAIL VARCHAR (100) NULL, 
-CONTRASEÑA VARCHAR(100) NULL 
+CONTRASEÑA VARCHAR(100) NULL, 
+TIPOUSER INT NOT NULL
 )
-GO 
+GO
 CREATE TABLE MARCAS (
 ID INT NOT NULL IDENTITY (1,1) PRIMARY KEY, 
 NOMBRE VARCHAR (100) NOT NULL
@@ -41,7 +42,8 @@ IMAGEN1 VARCHAR (500) NULL,
 IMAGEN2 VARCHAR (500) NULL,
 IMAGEN3 VARCHAR (500) NULL,
 IMAGEN4 VARCHAR (500) NULL,
-PRECIO MONEY NULL
+PRECIO MONEY NULL, 
+ESTADO BIT DEFAULT 1
 )
 GO
 CREATE TABLE COLORES_X_PRODUCTO (
@@ -66,7 +68,6 @@ CANTIDAD INT NOT NULL,
 PRECIO MONEY NOT NULL
 )
 
-
 -- ****************** PROCEDIMIENTOS ALMACENADOS ******************
 --AGREGA PRODUCTO
 Go
@@ -88,7 +89,7 @@ CREATE PROCEDURE SP_AGREGARPRODUCTO (
 @Precio money
 )AS
 BEGIN 
-	INSERT INTO PRODUCTOS VALUES(@Nombre,@Descripcion, @Tipo, @Marca,@MemoriaInterna,@MemoriaRam,@Procesador,@Disco,@SistemaOperativo, @PlacaVideo, @Imagen1,@Imagen2,@Imagen3,@Imagen4, @Precio)
+	INSERT INTO PRODUCTOS VALUES(@Nombre,@Descripcion, @Tipo, @Marca,@MemoriaInterna,@MemoriaRam,@Procesador,@Disco,@SistemaOperativo, @PlacaVideo, @Imagen1,@Imagen2,@Imagen3,@Imagen4, @Precio,1)
 	
 END 
 
@@ -262,12 +263,24 @@ go
 Create Procedure SP_EliminaProducto(@Id bigint)
 as
 Begin
-delete PRODUCTOS Where ID = @Id
+UPDATE PRODUCTOS SET ESTADO = 0 WHERE ID = @Id
 end
 
-
-
-insert into COLORES (NOMBRE)  values ('ROJO')
-
-
-)
+GO
+--AGREGAR USUARIO
+CREATE PROCEDURE SP_AgregarUsuario( 
+@Nombre varchar (100),
+@Apellido varchar (100),
+@Email varchar (100),
+@Contraseña varchar(100)
+) AS
+BEGIN
+Declare @CantidadUsuarios int 
+Select @CantidadUsuarios= COUNT(DISTINCT U.Id) from Usuarios U 
+IF (@CantidadUsuarios = 0) BEGIN 
+insert into Usuarios (NOMBRE,APELLIDO,EMAIL,CONTRASEÑA,TIPOUSER) output inserted.Id values (@Nombre,@Apellido,@Email,@Contraseña,2)
+END 
+ELSE BEGIN
+insert into Usuarios (NOMBRE,APELLIDO,EMAIL,CONTRASEÑA,TIPOUSER) output inserted.Id values (@Nombre,@Apellido,@Email,@Contraseña,1)
+END 
+END

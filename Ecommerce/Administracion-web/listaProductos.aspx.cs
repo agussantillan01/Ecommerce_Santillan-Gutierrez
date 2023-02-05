@@ -43,7 +43,7 @@ namespace Administracion_web
                 if (cantidadStock == 0)
                 {
                     negocioProducto.eliminarConSP(idSeleccionado);
-                    Response.Redirect("listaProductos.aspx");
+                    Response.Redirect("listaProductos.aspx", false);
                 }
                 else
                 {
