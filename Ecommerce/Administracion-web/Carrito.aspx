@@ -28,7 +28,7 @@
 
                     </td>
                     <td>
-<%--                        <asp:Button Text="Eliminar" CssClass="btn btn-primary" ID="btnEliminar2" AutoPostBack="true" OnClick="btnEliminar2_Click" CommandArgument='<%#Eval("ID")%>' runat="server" />--%>
+                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" ID="btnEliminar2" AutoPostBack="true" OnClick="btnEliminar2_Click" CommandArgument='<%#Eval("ID")%>' runat="server" />
                     </td>
                 </tr>
 

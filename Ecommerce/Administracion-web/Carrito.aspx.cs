@@ -207,6 +207,41 @@ namespace Administracion_web
 
         }
 
-        
+        protected void btnEliminar2_Click(object sender, EventArgs e)
+        {
+            cantidadProductosCarrito =((int)Session["cantidadProductosCarrito"])-1;
+            Session.Add("cantidadProductosCarrito", cantidadProductosCarrito);
+
+
+
+            carrito = (carritoCompra)Session["total"];
+
+            var argument = ((Button)sender).CommandArgument;
+            List<itemCarrito> ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
+            itemCarrito elim = ListaEnCarrito.Find(x => x.id.ToString() == argument);
+            ListaEnCarrito.Remove(elim);
+
+            carrito.total -= elim.subtotal;
+            if (carrito.total < 0) carrito.total = 0;
+            lblPrecioTotal.Text = "Total: " + carrito.total.ToString();
+
+
+            Session.Add("listaEnCarro", ListaEnCarrito);
+            Session.Add("total", carrito);
+            repetidor.DataSource = null;
+            repetidor.DataSource = ListaEnCarrito;
+            repetidor.DataBind();
+
+
+
+            if (carrito.listado.Count > 0)
+            {
+                Response.Redirect("Carrito.aspx");
+            }
+            else
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
     }
 }
