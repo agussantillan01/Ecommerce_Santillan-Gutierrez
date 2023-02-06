@@ -56,7 +56,7 @@ namespace Administracion_web
             }
             catch (Exception ex)
             {
-                Session.Add("Error", "No se ha podido actualizar los prodcuto");
+                Session.Add("Error", "No se ha podido actualizar el producto");
                 Response.Redirect("Error.aspx", false);
 
                 throw;

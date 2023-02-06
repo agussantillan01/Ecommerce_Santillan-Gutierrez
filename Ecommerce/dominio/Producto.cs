@@ -26,5 +26,6 @@ namespace dominio
         public string Imagen3 { get; set; }
         public string Imagen4 { get; set; }
         public decimal Precio { get; set; }
+       public bool Estado { get; set; }
     }
 }

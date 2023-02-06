@@ -22,12 +22,12 @@ namespace negocio
                 comando.CommandType = System.Data.CommandType.Text;
                 if (id == "")
                 {
-                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1";
+                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1";
 
                 }
                 if (id != "")
                 {
-                    comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND P.ID= " + id.ToString();
+                    comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND P.ID= " + id.ToString();
 
                 }
                 comando.Connection = conexion;
@@ -60,6 +60,8 @@ namespace negocio
                         prod.Procesador = (string)lector["PROCESADOR"];
                     if (!(lector["TIPODISCO"] is DBNull))
                         prod.TipoDisco = (string)lector["TIPODISCO"];
+                    if (!(lector["ESTADO"] is DBNull))
+                        prod.Estado = (bool)lector["ESTADO"];
 
                     prod.Marca = new Marca();
                     prod.Marca.Id = (int)lector["IDMARCA"];
@@ -131,6 +133,7 @@ namespace negocio
                         prod.Procesador = (string)lector["PROCESADOR"];
                     if (!(lector["TIPODISCO"] is DBNull))
                         prod.TipoDisco = (string)lector["TIPODISCO"];
+       
 
                     prod.Marca = new Marca();
                     prod.Marca.Id = (int)lector["IDMARCA"];
