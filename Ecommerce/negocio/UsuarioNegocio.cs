@@ -14,16 +14,15 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Select IdUsuario,TipoUser from Usuarios Where Email=@Email AND Contraseña=@Contraseña");
-                datos.setearParametro("@NOMBRE", usuario.Nombre);
-                datos.setearParametro("@APELLIDO", usuario.Apellido);
+                datos.setearConsulta("Select Id,TipoUser from Usuarios Where Email=@Email AND Contraseña=@Contraseña");
+
                 datos.setearParametro("@Email", usuario.Email);
                 datos.setearParametro("@Contraseña", usuario.Contraseña);
 
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    usuario.Id = (Int64)datos.Lector["IdUsuario"];
+                    usuario.Id = (int)datos.Lector["Id"];
                     usuario.TipoUsuario = (int)datos.Lector["TipoUser"] == 2 ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
                     return true;
                 }
@@ -81,8 +80,10 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
-                    aux.Id = (Int64)datos.Lector["IdUsuario"];
+                    aux.Id = (Int64)datos.Lector["Id"];
                     aux.Email = (string)datos.Lector["Email"];
+                    aux.Nombre = (string)datos.Lector["NOMBRE"];
+                    aux.Apellido = (string)datos.Lector["APELLIDO"];
                     aux.Contraseña = (string)datos.Lector["Contraseña"];
                     aux.TipoUsuario = (TipoUsuario)datos.Lector["TipoUser"];
                     lista.Add(aux);
@@ -107,7 +108,7 @@ namespace negocio
             {
                 Usuario aux = new Usuario();
                 datos.setearProcedimiento("SP_HacerAdmin");
-                datos.setearParametro("@IdUsuario", ID);
+                datos.setearParametro("@Id", ID);
 
                 datos.ejectutarAccion();
 

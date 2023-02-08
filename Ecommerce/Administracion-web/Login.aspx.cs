@@ -29,8 +29,9 @@ namespace administracion_web
                 if (usuarioNegocio.Loguear(usuario))
                 {
                     Session.Add("Usuario", usuario);
-                    Response.Redirect("registroProductos.aspx", false);
-                    Session.Add("emailParametro", txtEmail.Text);
+                    Session.Add("NombreUsuario", usuario.Nombre);
+                    Response.Redirect("Default.aspx", false);
+                //    Session.Add("emailParametro", txtEmail.Text);
 
                 }
                 else

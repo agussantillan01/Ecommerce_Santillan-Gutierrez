@@ -2,15 +2,16 @@ CREATE DATABASE ECOMMERCE
 go
 USE ECOMMERCE
 GO
+
 CREATE TABLE USUARIOS(
 ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 NOMBRE VARCHAR (100) NULL, 
 APELLIDO VARCHAR (100) NULL, 
 EMAIL VARCHAR (100) NULL, 
-CONTRASEÑA VARCHAR(100) NULL, 
-TIPOUSER INT NOT NULL
+CONTRASEÑA VARCHAR(100) NULL,
+TipoUser int not null
 )
-GO
+GO 
 CREATE TABLE MARCAS (
 ID INT NOT NULL IDENTITY (1,1) PRIMARY KEY, 
 NOMBRE VARCHAR (100) NOT NULL
@@ -42,8 +43,8 @@ IMAGEN1 VARCHAR (500) NULL,
 IMAGEN2 VARCHAR (500) NULL,
 IMAGEN3 VARCHAR (500) NULL,
 IMAGEN4 VARCHAR (500) NULL,
-PRECIO MONEY NULL, 
-ESTADO BIT DEFAULT 1
+PRECIO MONEY NULL,
+ESTADO BIT
 )
 GO
 CREATE TABLE COLORES_X_PRODUCTO (
@@ -67,6 +68,7 @@ IDCOLOR INT FOREIGN KEY REFERENCES COLORES (ID),
 CANTIDAD INT NOT NULL, 
 PRECIO MONEY NOT NULL
 )
+
 
 -- ****************** PROCEDIMIENTOS ALMACENADOS ******************
 --AGREGA PRODUCTO
@@ -263,7 +265,7 @@ go
 Create Procedure SP_EliminaProducto(@Id bigint)
 as
 Begin
-UPDATE PRODUCTOS SET ESTADO = 0 WHERE ID = @Id
+Update PRODUCTOS set ESTADO = 0 Where ID = @Id
 end
 
 GO
@@ -278,9 +280,12 @@ BEGIN
 Declare @CantidadUsuarios int 
 Select @CantidadUsuarios= COUNT(DISTINCT U.Id) from Usuarios U 
 IF (@CantidadUsuarios = 0) BEGIN 
-insert into Usuarios (NOMBRE,APELLIDO,EMAIL,CONTRASEÑA,TIPOUSER) output inserted.Id values (@Nombre,@Apellido,@Email,@Contraseña,2)
+insert into Usuarios (NOMBRE,APELLIDO,Email,Contraseña,TipoUser) output inserted.Id values (@Nombre,@Apellido,@Email,@Contraseña,2)
 END 
 ELSE BEGIN
-insert into Usuarios (NOMBRE,APELLIDO,EMAIL,CONTRASEÑA,TIPOUSER) output inserted.Id values (@Nombre,@Apellido,@Email,@Contraseña,1)
+insert into Usuarios (NOMBRE,APELLIDO,Email,Contraseña,TipoUser) output inserted.Id values (@Nombre,@Apellido,@Email,@Contraseña,1)
 END 
 END
+
+
+INSERT INTO COLORES values ('LILA')
