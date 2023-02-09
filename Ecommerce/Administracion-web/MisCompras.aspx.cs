@@ -25,6 +25,10 @@ namespace Administracion_web
                 dgvComprasTotal.DataSource = negocio.listar();
                 dgvComprasTotal.DataBind();
             }
+
+            //asca
+
+
         }
 
 

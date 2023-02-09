@@ -11,7 +11,7 @@ namespace Administracion_web
 {
 
 
-    public partial class Default
+    public partial class ShopCompus
     {
     }
 }

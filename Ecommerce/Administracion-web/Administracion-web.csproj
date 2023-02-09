@@ -80,6 +80,8 @@
     <Content Include="listaProductos.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="quienesSomos.aspx" />
+    <Content Include="ShopCompus.aspx" />
+    <Content Include="ShopCelulares.aspx" />
     <Content Include="ShopTodos.aspx" />
     <Content Include="stock.aspx" />
     <Content Include="Web.config" />
@@ -197,6 +199,20 @@
     </Compile>
     <Compile Include="quienesSomos.aspx.designer.cs">
       <DependentUpon>quienesSomos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopCompus.aspx.cs">
+      <DependentUpon>ShopCompus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopCompus.aspx.designer.cs">
+      <DependentUpon>ShopCompus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopCelulares.aspx.cs">
+      <DependentUpon>ShopCelulares.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopCelulares.aspx.designer.cs">
+      <DependentUpon>ShopCelulares.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopTodos.aspx.cs">
       <DependentUpon>ShopTodos.aspx</DependentUpon>

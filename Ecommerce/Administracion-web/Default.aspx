@@ -123,7 +123,7 @@
                         <h3>Celulares</h3>
                         <p>Ver todos los productos Celulares</p>
                         <div class="link">
-                            <a href="celulares.aspx">Celulares</a>
+                            <a href="ShopCelulares.aspx">Celulares</a>
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                         <h3>Notebooks/PC</h3>
                         <p>Ver todos los productos Notebooks/PC</p>
                         <div class="link">
-                            <a href="notebooks.aspx">Notebooks/PC</a>
+                            <a href="ShopCompus.aspx">Notebooks/PC</a>
                         </div>
                     </div>
                 </div>
