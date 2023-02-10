@@ -19,7 +19,18 @@ namespace Administracion_web
         decimal totalAux;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
+            Usuario usuario = Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
+            if (usuario == null)
+            {
+                Session.Add("Error", "Debes loguearte!");
+                Response.Redirect("ErrorLogin.aspx", false);
+            }
+            else
+            {
+
+       
+
             ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
             carrito = (carritoCompra)Session["total"];
 
@@ -76,6 +87,8 @@ namespace Administracion_web
             Session.Add("listaEnCarro", ListaEnCarrito);
             Session.Add("total", carrito);
 
+            }
+
         }
 
 
@@ -87,7 +100,7 @@ namespace Administracion_web
             string[] argument = ((Button)sender).CommandArgument.Split(',');
             List<itemCarrito> ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
             itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0].ToString() && x.color.Id.ToString() == argument[1].ToString());
-            //FALTA ACA Q SUME PARA Q CAMBIE EL VALOR DEL CANT DE CARRITO
+  
 
             sobrecarga.cantidad++;
             sobrecarga.subtotal = sobrecarga.item.Precio * sobrecarga.cantidad;
