@@ -14,22 +14,22 @@ namespace Administracion_web
         public carritoCompra carrito = new carritoCompra();
         public List<itemCarrito> ListaEnCarrito;
         int inc = 0;
-       public int cantidadProductosCarrito = 0;
+        public int cantidadProductosCarrito = 0;
 
         decimal totalAux;
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            Usuario usuario = Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
-            if (usuario == null)
-            {
-                Session.Add("Error", "Debes loguearte!");
-                Response.Redirect("ErrorLogin.aspx", false);
-            }
-            else
-            {
+            //Usuario usuario = Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
+            //if (usuario == null)
+            //{
+            //    Session.Add("Error", "Debes loguearte!");
+            //    Response.Redirect("ErrorLogin.aspx", false);
+            //}
+            //else
+            //{
 
-       
+
 
             ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
             carrito = (carritoCompra)Session["total"];
@@ -38,8 +38,8 @@ namespace Administracion_web
                 ListaEnCarrito = new List<itemCarrito>();
             if (carrito == null)
                 carrito = new carritoCompra();
-            
-            
+
+
 
             if (!IsPostBack)
             {
@@ -48,8 +48,22 @@ namespace Administracion_web
                     if (ListaEnCarrito.Find(x => x.item.Id.ToString() == Request.QueryString["Id"] && x.color.Id.ToString() == Request.QueryString["IdColor"]) == null)
                     {
                         List<Producto> listadoOriginal = (List<Producto>)Session["listadoProductos"];
-                        cantidadProductosCarrito++;
+                        var cantidadProductosCarritoView = Session["cantidadProductosCarrito"];
+                        if (cantidadProductosCarritoView != null)
+                        {
+                            cantidadProductosCarrito = (int)Session["cantidadProductosCarrito"] + 1;
+                            Session.Add("cantidadProductosCarrito", cantidadProductosCarrito);
+
+                        }
+                        else
+                        {
+                            cantidadProductosCarrito++;
+                            Session.Add("cantidadProductosCarrito", cantidadProductosCarrito);
+                        }
+
+
                         Session.Add("cantidadProductosCarrito", cantidadProductosCarrito);
+
                         colorNegocio colorNegocio = new colorNegocio();
                         List<Color> colorListaTotal = colorNegocio.listarTodos();
 
@@ -83,11 +97,11 @@ namespace Administracion_web
             }
 
             lblPrecioTotal.Text = "$ Total: " + carrito.total.ToString();
-            Session.Add("CantidadCarrito",inc);
+            Session.Add("CantidadCarrito", inc);
             Session.Add("listaEnCarro", ListaEnCarrito);
             Session.Add("total", carrito);
 
-            }
+            //}
 
         }
 
@@ -100,7 +114,7 @@ namespace Administracion_web
             string[] argument = ((Button)sender).CommandArgument.Split(',');
             List<itemCarrito> ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
             itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0].ToString() && x.color.Id.ToString() == argument[1].ToString());
-  
+
 
             sobrecarga.cantidad++;
             sobrecarga.subtotal = sobrecarga.item.Precio * sobrecarga.cantidad;
@@ -115,7 +129,7 @@ namespace Administracion_web
                     item.color = sobrecarga.color;
                     item.cantidad = sobrecarga.cantidad;
                     item.subtotal = sobrecarga.subtotal;
-                    
+
 
                 }
 
@@ -129,7 +143,7 @@ namespace Administracion_web
 
             Session.Add("listaEnCarro", ListaEnCarrito);
             Session.Add("Total", carrito);
-  
+
             repetidor.DataSource = null;
             repetidor.DataSource = ListaEnCarrito;
             repetidor.DataBind();
@@ -160,14 +174,14 @@ namespace Administracion_web
                         item.color = sobrecarga.color;
                         item.cantidad = sobrecarga.cantidad;
                         item.subtotal = sobrecarga.subtotal;
-                        
+
 
 
                     }
 
                     totalAux += item.subtotal;
                 }
-               
+
 
 
                 carrito.total = totalAux;
@@ -188,11 +202,11 @@ namespace Administracion_web
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
-            CompraNegocio negocioCompra = new CompraNegocio(); 
-            negocioCompra.registroCompra (carrito);
+            CompraNegocio negocioCompra = new CompraNegocio();
+            negocioCompra.registroCompra(carrito);
 
             List<carritoCompra> listaTotal = negocioCompra.listar();
-            int ultimoIndice= listaTotal.Count();
+            int ultimoIndice = listaTotal.Count();
             carritoCompra ultimo = listaTotal[ultimoIndice - 1];
 
             foreach (var item in carrito.listado)
@@ -207,8 +221,9 @@ namespace Administracion_web
             limpraLista();
 
         }
-        private void limpraLista() {
-            carrito = null; 
+        private void limpraLista()
+        {
+            carrito = null;
             ListaEnCarrito = null;
             Session.Add("CantidadCarrito", 0);
             Session.Add("listaEnCarrito", ListaEnCarrito);
@@ -222,7 +237,7 @@ namespace Administracion_web
 
         protected void btnEliminar2_Click(object sender, EventArgs e)
         {
-            cantidadProductosCarrito =((int)Session["cantidadProductosCarrito"])-1;
+            cantidadProductosCarrito = ((int)Session["cantidadProductosCarrito"]) - 1;
             Session.Add("cantidadProductosCarrito", cantidadProductosCarrito);
 
 

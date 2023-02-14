@@ -12,6 +12,7 @@ namespace Administracion_web
     {
         public Producto prod = new Producto();
         public Color colorSeleccionado = new Color();
+        public int idColor = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -49,12 +50,10 @@ namespace Administracion_web
             colorNegocio negocio = new colorNegocio();
             List<Color> lista = negocio.listarTodos();
 
-            int idColor = int.Parse(ddlColores.SelectedItem.Value);
+             idColor = int.Parse(ddlColores.SelectedItem.Value);
             colorSeleccionado = lista.Find(x => x.Id == idColor);
             if (idColor != 0)
             {
-
-
 
                 ColoresXproductoNegocio cxpNegocio = new ColoresXproductoNegocio();
                 List<ColoresXproducto> listacxp = cxpNegocio.listarTodo();

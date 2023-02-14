@@ -45,12 +45,27 @@
                 <br />
                 <asp:Label Style="color:green;" Text="" ID="lblStockDisponible" runat="server" />
                 <br />
+
+                <%if (idColor !=  0)
+                    {%>
                 <a href="Carrito.aspx?id=<% = prod.Id %>&IdColor=<% = colorSeleccionado.Id%>">
                     <button class="btn btn-outline-secondary" type="button" style="text-align: center">
                         <img style="width: 20px;" src="../img/iconCarrito.png" alt="Alternate Text" />
                         <p class="card-text"><small class="text-muted"><% = prod.Precio.ToString()%></small></p>
                     </button>
                 </a>
+                <% }
+                else
+                { %>
+                
+                    <button class="btn btn-outline-secondary" type="button" style="text-align: center">
+                        <img style="width: 20px;" src="../img/iconCarrito.png" alt="Alternate Text" />
+                        <p class="card-text"><small class="text-muted"><% = prod.Precio.ToString()%></small></p>
+                    </button>
+                
+                <% }%>
+            </div>
+
 
 
                
