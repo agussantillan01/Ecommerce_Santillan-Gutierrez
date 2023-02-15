@@ -14,7 +14,7 @@ namespace dominio
     }
     public class Usuario
     {
-        public Int64 Id { get; set; }
+        public int Id { get; set; }
 
         public string Nombre { get; set; }
 

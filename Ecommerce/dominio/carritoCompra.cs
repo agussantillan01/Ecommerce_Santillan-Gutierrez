@@ -13,8 +13,8 @@ namespace dominio
     {
         public int Id { get; set; }
         public List<itemCarrito> listado { get; set; }
-        public int IdUsuario { get; set; }
-       // public DateTime FechaCompra { get; set; }
+        public Usuario usuario { get; set; }
+        public DateTime FechaCompra { get; set; }
         public decimal total { get; set; }
 
     }

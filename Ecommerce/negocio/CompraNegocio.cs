@@ -10,14 +10,14 @@ namespace negocio
 {
     public class CompraNegocio
     {
-        public void registroCompra( carritoCompra carrito)
+        public void registroCompra( carritoCompra carrito, int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearProcedimiento("SP_AgregarCompra");
                 datos.setearParametro("@Id", carrito.Id);
-                datos.setearParametro("@IdUsuario", 1);
+                datos.setearParametro("@IdUsuario", id);
                 //datos.setearParametro("@FechaCompra", carrito.FechaCompra);
                 datos.setearParametro("@Total", carrito.total);
 
@@ -35,7 +35,7 @@ namespace negocio
 
         }
 
-        public List<carritoCompra>  listar()
+        public List<carritoCompra>  listar(string IdUsuario="")
         {
 
 
@@ -47,7 +47,11 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT ID, IDUSUARIO, PRECIOTOTAL FROM VENTAS";
+                comando.CommandText = "SELECT V.ID, U.ID AS IDUSUARIO,U.NOMBRE AS NOMBREUSUARIO, U.APELLIDO AS APELLIDOUSUARIO,U.EMAIL AS EMAILUSUARIO,FECHAVENTA ,PRECIOTOTAL FROM VENTAS V INNER JOIN USUARIOS U ON V.IDUSUARIO = U.ID";
+                if (IdUsuario != "")
+                {
+                    comando.CommandText += " WHERE U.ID = "+ IdUsuario; 
+                }
 
 
 
@@ -60,8 +64,16 @@ namespace negocio
                 {
                     carritoCompra carrito = new carritoCompra();
                     carrito.Id = (int)lector["ID"];
-                    if (!(lector["IDUSUARIO"] is DBNull))
-                        carrito.IdUsuario = (int)lector["IDUSUARIO"];
+
+                    carrito.usuario = new Usuario();
+                    carrito.usuario.Id = (int)lector["IDUSUARIO"];
+                    carrito.usuario.Nombre = (string)lector["NOMBREUSUARIO"];
+                    carrito.usuario.Apellido = (string)lector["APELLIDOUSUARIO"];
+                    carrito.usuario.Email = (string)lector["EMAILUSUARIO"];
+
+                    if (!(lector["FECHAVENTA"] is DBNull))
+                        carrito.FechaCompra = (DateTime)lector["FECHAVENTA"];
+
                     if (!(lector["PRECIOTOTAL"] is DBNull))
                         carrito.total = (decimal)lector["PRECIOTOTAL"];
 

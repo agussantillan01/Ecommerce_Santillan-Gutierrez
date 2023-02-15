@@ -11,6 +11,7 @@ namespace Administracion_web
 {
     public partial class MisCompras : System.Web.UI.Page
     {
+        public  TipoUsuario tu;
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuario = Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
@@ -21,9 +22,20 @@ namespace Administracion_web
             }
             else
             {
-                CompraNegocio negocio = new CompraNegocio();
-                dgvComprasTotal.DataSource = negocio.listar();
-                dgvComprasTotal.DataBind();
+                tu = usuario.TipoUsuario;
+                if (tu == TipoUsuario.ADMIN)
+                {
+                    CompraNegocio negocio = new CompraNegocio();
+                    dgvComprasTotal.DataSource = negocio.listar();
+                    dgvComprasTotal.DataBind();
+                } else
+                {
+                    CompraNegocio negocio = new CompraNegocio();
+                    dgvComprasXusuario.DataSource = negocio.listar(usuario.Id.ToString());
+                    dgvComprasXusuario.DataBind();
+
+                }
+
             }
 
             //asca

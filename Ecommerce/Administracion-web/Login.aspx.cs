@@ -21,24 +21,34 @@ namespace administracion_web
 
         protected void btnIngresar_Click1(object sender, EventArgs e)
         {
-            Usuario usuario;
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
-                usuario = new Usuario(txtEmail.Text, txtPassword.Text, false);
-                if (usuarioNegocio.Loguear(usuario))
+
+                if (txtEmail.Text != "" || txtPassword.Text != "")
                 {
-                    Session.Add("Usuario", usuario);
-                    Session.Add("NombreUsuario", usuario.Nombre);
-                    Response.Redirect("Default.aspx", false);
-                //    Session.Add("emailParametro", txtEmail.Text);
+                    Usuario usuario;
+                    UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                    usuario = usuarioNegocio.listar().Find(x => x.Email == txtEmail.Text && x.Contraseña == txtPassword.Text);
+                    if (usuario != null)
+                    {
+                        if (usuarioNegocio.Loguear(usuario))
+                        {
+                            Session.Add("Usuario", usuario);
+                            Session.Add("NombreUsuario", usuario.Nombre);
+                            Response.Redirect("Default.aspx", false);
+                            //    Session.Add("emailParametro", txtEmail.Text);
+
+                        }
+                    }
+                    else
+                    {
+                        Session.Add("Error", "Email o contraseña incorrecta");
+                        Response.Redirect("ErrorLogin.aspx", false);
+                    }
+
 
                 }
-                else
-                {
-                    Session.Add("Error", "Email o contraseña incorrecta");
-                    Response.Redirect("ErrorLogin.aspx", false);
-                }
+
 
             }
             catch (Exception ex)

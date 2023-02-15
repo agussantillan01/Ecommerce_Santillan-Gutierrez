@@ -6,6 +6,7 @@
     <div style="text-align:center;">
         <h1>Hubo un problema!</h1>
         <asp:Label Text="" ID="lblErrorLogin" Style="color: red;" runat="server" />
+        
     </div>
     <div style="text-align:center;">
         <img src="../img/errorLogin.png" alt="Error" />

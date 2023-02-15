@@ -287,5 +287,3 @@ insert into Usuarios (NOMBRE,APELLIDO,Email,Contraseña,TipoUser) output inserted
 END 
 END
 
-
-INSERT INTO COLORES values ('LILA')

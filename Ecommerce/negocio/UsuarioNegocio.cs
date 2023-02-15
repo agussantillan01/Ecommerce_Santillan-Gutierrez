@@ -1,6 +1,7 @@
 ﻿using dominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,39 +68,92 @@ namespace negocio
             }
         }
 
-        public List<Usuario> listarSP(string email = "")
+        //public List<Usuario> listarSP(string email = "")
+        //{
+        //    List<Usuario> lista = new List<Usuario>();
+        //    AccesoDatos datos = new AccesoDatos();
+        //    try
+        //    {
+        //        datos.setearProcedimiento("SP_listarUsuarios");
+
+        //        datos.setearParametro("@Email", email);
+        //        datos.ejecutarLectura();
+        //        while (datos.Lector.Read())
+        //        {
+        //            Usuario aux = new Usuario();
+        //            aux.Id = (Int64)datos.Lector["Id"];
+        //            aux.Email = (string)datos.Lector["Email"];
+        //            aux.Nombre = (string)datos.Lector["NOMBRE"];
+        //            aux.Apellido = (string)datos.Lector["APELLIDO"];
+        //            aux.Contraseña = (string)datos.Lector["Contraseña"];
+        //            aux.TipoUsuario = (TipoUsuario)datos.Lector["TipoUser"];
+        //            lista.Add(aux);
+        //        }
+        //        return lista;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        datos.cerrarConexion();
+        //    }
+        //}
+
+
+        public List<Usuario> listar()
         {
             List<Usuario> lista = new List<Usuario>();
-            AccesoDatos datos = new AccesoDatos();
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
             try
             {
-                datos.setearProcedimiento("SP_listarUsuarios");
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT ID, APELLIDO, NOMBRE, EMAIL, CONTRASEÑA,TIPOUSER FROM USUARIOS";
+                comando.Connection = conexion;
+                conexion.Open();
 
-                datos.setearParametro("@Email", email);
-                datos.ejecutarLectura();
-                while (datos.Lector.Read())
+                lector = comando.ExecuteReader();
+                while (lector.Read())
                 {
-                    Usuario aux = new Usuario();
-                    aux.Id = (Int64)datos.Lector["Id"];
-                    aux.Email = (string)datos.Lector["Email"];
-                    aux.Nombre = (string)datos.Lector["NOMBRE"];
-                    aux.Apellido = (string)datos.Lector["APELLIDO"];
-                    aux.Contraseña = (string)datos.Lector["Contraseña"];
-                    aux.TipoUsuario = (TipoUsuario)datos.Lector["TipoUser"];
-                    lista.Add(aux);
+                    Usuario us = new Usuario();
+                    us.Id = (int)lector["ID"];
+                    if (!(lector["NOMBRE"] is DBNull))
+                        us.Nombre = (string)lector["NOMBRE"];
+
+                    if (!(lector["APELLIDO"] is DBNull))
+                        us.Apellido = (string)lector["APELLIDO"];
+
+                    if (!(lector["EMAIL"] is DBNull))
+                        us.Email = (string)lector["EMAIL"];
+
+                    if (!(lector["CONTRASEÑA"] is DBNull))
+                        us.Contraseña = (string)lector["CONTRASEÑA"];
+
+                    if (!(lector["TIPOUSER"] is DBNull))
+                        us.TipoUsuario = (TipoUsuario)lector["TIPOUSER"];
+
+
+                    lista.Add(us);
                 }
+
+
                 return lista;
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
             finally
             {
-                datos.cerrarConexion();
+                conexion.Close();
             }
-        }
 
+        }
 
         public void HacerAdmin(Int64 ID)
         {

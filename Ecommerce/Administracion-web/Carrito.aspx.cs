@@ -37,7 +37,11 @@ namespace Administracion_web
             if (ListaEnCarrito == null)
                 ListaEnCarrito = new List<itemCarrito>();
             if (carrito == null)
+            {
                 carrito = new carritoCompra();
+                carrito.usuario = (Usuario)Session["Usuario"];
+            }
+
 
 
 
@@ -202,23 +206,35 @@ namespace Administracion_web
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
-            CompraNegocio negocioCompra = new CompraNegocio();
-            negocioCompra.registroCompra(carrito);
-
-            List<carritoCompra> listaTotal = negocioCompra.listar();
-            int ultimoIndice = listaTotal.Count();
-            carritoCompra ultimo = listaTotal[ultimoIndice - 1];
-
-            foreach (var item in carrito.listado)
+            if ((dominio.Usuario)Session["Usuario"]== null)
             {
-                negocioCompra.agregarDetalleXventa(item, ultimo.Id);
+                Session.Add("Error", "Recuerde loguearte!");
+                Response.Redirect("ErrorLogin.aspx", false);
+            }else
+            {
+                CompraNegocio negocioCompra = new CompraNegocio();
+                Usuario us = (Usuario)Session["Usuario"];
+                negocioCompra.registroCompra(carrito, us.Id);
 
+                List<carritoCompra> listaTotal = negocioCompra.listar();
+                int ultimoIndice = listaTotal.Count();
+                carritoCompra ultimo = listaTotal[ultimoIndice - 1];
+
+                foreach (var item in carrito.listado)
+                {
+
+                    
+                    
+                    negocioCompra.agregarDetalleXventa(item,us.Id);
+
+                }
+
+                Response.Redirect("Default.aspx", false);
+
+
+                limpraLista();
             }
 
-            Response.Redirect("Default.aspx", false);
-
-
-            limpraLista();
 
         }
         private void limpraLista()
@@ -230,6 +246,8 @@ namespace Administracion_web
             Session.Add("carrito", carrito);
             Session.Add("listaEnCarro", null);
             Session.Add("total", null);
+            Session.Add("cantidadProductosCarrito", 0);
+           
 
 
 
