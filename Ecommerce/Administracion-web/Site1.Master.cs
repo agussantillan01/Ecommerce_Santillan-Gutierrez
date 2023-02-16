@@ -14,24 +14,22 @@ namespace Administracion_web
         public int cant;
 
         public string Logeado;
+        public TipoUsuario tu;
         protected void Page_Load(object sender, EventArgs e)
         {
         
 
-            if (Session["cantidadProductosCarrito"] == null)
-            {
+            if (Session["cantidadProductosCarrito"] == null) 
                 cant = 0;
-            }
              else
-            {
                 cant = (int)Session["cantidadProductosCarrito"];
+
+        Usuario usuario = Session["Usuario"] != null ? (Usuario)Session["Usuario"] : null;
+            if (usuario != null)
+            {
+                tu = usuario.TipoUsuario;
             }
-
-    
-
-
-
-        Usuario usuario = Session["usuario"] != null ? (Usuario)Session["usuario"] : null;
+            
 
             if (usuario == null)
             {
@@ -39,7 +37,7 @@ namespace Administracion_web
             }
             else
             {
-               Logeado = "Logeado"; // CAMBIAR AL NOMBRE DEL CLIENTE DSP
+               Logeado = "Exit"; // CAMBIAR AL NOMBRE DEL CLIENTE DSP
   //             Logeado = (string)Session["NombreUsuario"];
 
             }
