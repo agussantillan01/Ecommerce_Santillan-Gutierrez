@@ -17,7 +17,7 @@
     <%if (tu != dominio.TipoUsuario.NORMAL)
         {%>
     <asp:GridView ID="dgvComprasTotal" runat="server" Style="width: 100%;" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped"
-        OnClass="table">
+        OnClass="table" OnSelectedIndexChanged="dgvComprasTotal_SelectedIndexChanged">
         <Columns>
             <asp:BoundField HeaderText="#Numero de Compra" DataField="Id" />
             <asp:BoundField HeaderText="Nombre" DataField="usuario.Nombre" />
@@ -25,17 +25,19 @@
             <asp:BoundField HeaderText="Email" DataField="usuario.Email" />
             <asp:BoundField HeaderText="Fecha" DataField="FechaCompra" />
             <asp:BoundField HeaderText="$" DataField="total" />
+            <asp:CommandField HeaderText="Detalle" ShowSelectButton="true" SelectText="Ver más" />
         </Columns>
     </asp:GridView>
     <%}
-       else
+        else
         { %>
-                <asp:GridView ID="dgvComprasXusuario" runat="server" Style="width: 100%;" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped"
-        OnClass="table">
+    <asp:GridView ID="dgvComprasXusuario" runat="server" Style="width: 100%;" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped"
+        OnClass="table" OnSelectedIndexChanged="dgvComprasXusuario_SelectedIndexChanged">
         <Columns>
             <asp:BoundField HeaderText="#Numero de Compra" DataField="Id" />
             <asp:BoundField HeaderText="Fecha" DataField="FechaCompra" />
             <asp:BoundField HeaderText="$" DataField="total" />
+            <asp:CommandField HeaderText="Detalle" ShowSelectButton="true" SelectText="Ver más" />
         </Columns>
     </asp:GridView>
     <% } %>

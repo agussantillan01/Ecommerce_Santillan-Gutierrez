@@ -224,8 +224,9 @@ namespace Administracion_web
                 {
 
                     
-                    
-                    negocioCompra.agregarDetalleXventa(item,us.Id);
+                    //agregarParametro de IDVenta (ultimoindice)
+
+                    negocioCompra.agregarDetalleXventa(item, ultimo.Id);
 
                 }
 

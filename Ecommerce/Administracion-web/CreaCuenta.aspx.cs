@@ -22,6 +22,7 @@ namespace administracion_web
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             bool seEncontroEmail = false;
             List<Usuario> lista = usuarioNegocio.listar();
+
             foreach (Usuario item in lista)
             {
                 if (txtEmail.Text.ToLower() == item.Email.ToLower()) seEncontroEmail = true;

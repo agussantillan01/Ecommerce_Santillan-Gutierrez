@@ -79,6 +79,7 @@
     <Content Include="listaMarcas.aspx" />
     <Content Include="listaProductos.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="misComprasDetalle.aspx" />
     <Content Include="quienesSomos.aspx" />
     <Content Include="ShopCompus.aspx" />
     <Content Include="ShopCelulares.aspx" />
@@ -184,6 +185,13 @@
     </Compile>
     <Compile Include="listaProductos.aspx.designer.cs">
       <DependentUpon>listaProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="misComprasDetalle.aspx.cs">
+      <DependentUpon>misComprasDetalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="misComprasDetalle.aspx.designer.cs">
+      <DependentUpon>misComprasDetalle.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Login.aspx.cs">

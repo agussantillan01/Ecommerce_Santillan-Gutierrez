@@ -123,5 +123,62 @@ namespace negocio
             }
 
         }
+
+        public List<itemCarrito> listarXVenta(string idVenta)
+        {
+
+
+            List<itemCarrito> lista = new List<itemCarrito>();
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            try
+            {
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "Select DV.IDVENTA, PR.ID AS IDPRODUCTO, PR.NOMBRE AS NOMBREPRODUCTO,C.ID as IDCOLOR, C.NOMBRE as NOMBRECOLOR, DV.CANTIDAD, DV.PRECIO from DETALLE_VENTA DV INNER JOIN PRODUCTOS PR ON PR.ID = DV.IDPRODUCTO INNER JOIN COLORES C ON C.ID = DV.IDCOLOR WHERE DV.IDVENTA= " + idVenta;
+
+
+                comando.Connection = conexion;
+                conexion.Open();
+
+                lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    itemCarrito carrito = new itemCarrito();
+                    carrito.id = (int)lector["IDVENTA"];
+                    carrito.cantidad = (int)lector["CANTIDAD"];
+                    carrito.subtotal = (decimal)lector["PRECIO"];
+                        
+                    carrito.color = new Color();
+                    carrito.color.Id = (int)lector["IDCOLOR"];
+                    carrito.color.Nombre = (string)lector["NOMBRECOLOR"];
+
+                    carrito.item = new Producto();
+                    carrito.item.Id = (int)lector["IDPRODUCTO"];
+                    carrito.item.Nombre = (string)lector["NOMBREPRODUCTO"];
+
+
+
+                    lista.Add(carrito);
+                }
+
+
+                return lista;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
     }
 }

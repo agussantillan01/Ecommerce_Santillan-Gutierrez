@@ -43,7 +43,19 @@ namespace Administracion_web
 
         }
 
+        protected void dgvComprasTotal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idDetalleVenta = dgvComprasTotal.SelectedDataKey.Value.ToString();
+            Response.Redirect("ShopTodos.aspx?IdCompraDetalle=" + idDetalleVenta);
 
+        }
+
+        protected void dgvComprasXusuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idDetalleCompra = dgvComprasXusuario.SelectedDataKey.Value.ToString();
+            Response.Redirect("MisComprasDetalle.aspx?IdCompraDetalle=" + idDetalleCompra);
+
+        }
     }
 }
 
