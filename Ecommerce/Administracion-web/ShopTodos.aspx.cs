@@ -17,6 +17,12 @@ namespace Administracion_web
             productoNegocio productoNegocio = new productoNegocio();
             ListaProductos = productoNegocio.listar();
             Session.Add("listadoProductos", ListaProductos);
+
+            if (!IsPostBack)
+            {
+                ddlFiltros.AppendDataBoundItems = true;
+                ddlFiltros.Items.Insert(0, new ListItem("Filtrar", ""));
+            }
         }
     }
 }
