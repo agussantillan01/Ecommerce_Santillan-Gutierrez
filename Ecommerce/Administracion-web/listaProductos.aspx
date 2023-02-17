@@ -51,7 +51,7 @@
             <%} else
             {
    Session.Add("Error", "recuerde Loguearse");
-    Response.Redirect("Error.aspx", false);
+    Response.Redirect("ErrorLogin.aspx", false);
 
             } %>
 

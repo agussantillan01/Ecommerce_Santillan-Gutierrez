@@ -14,14 +14,18 @@ namespace Administracion_web
         public List<Producto> ListaProductos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            productoNegocio productoNegocio = new productoNegocio();
-            ListaProductos = productoNegocio.listar();
-            Session.Add("listadoProductos", ListaProductos);
 
-            if (!IsPostBack)
+
+            if (txtSearch.Text == "")
             {
-                //ddlFiltros.AppendDataBoundItems = true;
-                //ddlFiltros.Items.Insert(0, new ListItem("Filtrar", ""));
+                productoNegocio productoNegocio = new productoNegocio();
+                ListaProductos = productoNegocio.listar();
+                Session.Add("listadoProductos", ListaProductos);
+            } else
+            {
+                productoNegocio productoNegocio = new productoNegocio();
+                ListaProductos = productoNegocio.listarConFiltro(txtSearch.Text.ToString());
+                Session.Add("listadoProductos", ListaProductos);
             }
         }
 
