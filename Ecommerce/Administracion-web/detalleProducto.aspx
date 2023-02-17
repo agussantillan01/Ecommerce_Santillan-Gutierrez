@@ -39,14 +39,21 @@
                 <p class="card-text" style="font-weight: bold;"><%= prod.Marca.Nombre%></p>
                 <p class="card-text" style="font-weight: bold;"><%= prod.Tipo.Nombre%></p>
                 <p class="card-text"><%= prod.Descripcion %></p>
+                <%if (prod.Tipo.Nombre == "Notebook" || prod.Tipo.Nombre == "PC")
+                    {%>
+                <p style="color: black;" class="card-text"><%= prod.TipoDisco %></p>
+                <p style="color: black;" class="card-text"><%= prod.Procesador %></p>
+                <p style="color: black;" class="card-text"><%= prod.SistemaOperativo%></p>
+                <p style="color: black;" class="card-text"><%= prod.PlacaVideo%></p>
+                <% } %>
                 <p class="card-text"><small class="text-muted">$ <%= prod.Precio%></small></p>
                 <asp:DropDownList ID="ddlColores" OnDataBound="ddlColores_DataBound" OnSelectedIndexChanged="ddlColores_SelectedIndexChanged" AutoPostBack="true" CssClass="form-select" runat="server"></asp:DropDownList>
                 <hr />
                 <br />
-                <asp:Label Style="color:green;" Text="" ID="lblStockDisponible" runat="server" />
+                <asp:Label Style="color: green;" Text="" ID="lblStockDisponible" runat="server" />
                 <br />
 
-                <%if (idColor !=  0)
+                <%if (idColor != 0)
                     {%>
                 <a href="Carrito.aspx?id=<% = prod.Id %>&IdColor=<% = colorSeleccionado.Id%>">
                     <button class="btn btn-outline-secondary" type="button" style="text-align: center">
@@ -55,22 +62,22 @@
                     </button>
                 </a>
                 <% }
-                else
-                { %>
-                
-                    <button class="btn btn-outline-secondary" type="button" style="text-align: center">
-                        <img style="width: 20px;" src="../img/iconCarrito.png" alt="Alternate Text" />
-                        <p class="card-text"><small class="text-muted"><% = prod.Precio.ToString()%></small></p>
-                    </button>
-                
+                    else
+                    { %>
+
+                <button class="btn btn-outline-secondary" type="button" style="text-align: center">
+                    <img style="width: 20px;" src="../img/iconCarrito.png" alt="Alternate Text" />
+                    <p class="card-text"><small class="text-muted"><% = prod.Precio.ToString()%></small></p>
+                </button>
+
                 <% }%>
             </div>
 
 
 
-               
-            </div>
+
         </div>
+    </div>
 
     </div>
 

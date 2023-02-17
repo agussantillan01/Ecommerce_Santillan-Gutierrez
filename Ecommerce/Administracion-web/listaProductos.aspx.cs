@@ -13,8 +13,14 @@ namespace Administracion_web
     {
 
         public List<Producto> ListaProductos { get; set; }
+        public TipoUsuario tu; 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Usuario"]!= null)
+            {
+                Usuario usuario = (Usuario)Session["Usuario"];
+                tu = usuario.TipoUsuario;
+            }
             productoNegocio productoNegocio = new productoNegocio();
             ListaProductos = productoNegocio.listar();
             if (!IsPostBack)

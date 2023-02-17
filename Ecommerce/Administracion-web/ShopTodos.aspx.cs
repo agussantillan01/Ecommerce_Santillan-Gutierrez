@@ -20,9 +20,39 @@ namespace Administracion_web
 
             if (!IsPostBack)
             {
-                ddlFiltros.AppendDataBoundItems = true;
-                ddlFiltros.Items.Insert(0, new ListItem("Filtrar", ""));
+                //ddlFiltros.AppendDataBoundItems = true;
+                //ddlFiltros.Items.Insert(0, new ListItem("Filtrar", ""));
             }
+        }
+
+        protected void btnMenorAMayor_Click(object sender, EventArgs e)
+        {
+            //1 
+            productoNegocio productoNegocio = new productoNegocio();
+            ListaProductos = productoNegocio.listarXFiltro(1);
+
+        }
+
+        protected void btnMayorAMenor_Click(object sender, EventArgs e)
+        {
+            //2
+            productoNegocio productoNegocio = new productoNegocio();
+            ListaProductos = productoNegocio.listarXFiltro(2);
+        }
+
+        protected void btnAZ_Click(object sender, EventArgs e)
+        {
+            //3
+            productoNegocio productoNegocio = new productoNegocio();
+            ListaProductos = productoNegocio.listarXFiltro(3);
+        }
+
+        protected void btnZA_Click(object sender, EventArgs e)
+        {
+            //4
+            productoNegocio productoNegocio = new productoNegocio();
+            ListaProductos = productoNegocio.listarXFiltro(4);
+
         }
     }
 }

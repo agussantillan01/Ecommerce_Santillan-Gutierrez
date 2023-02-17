@@ -22,12 +22,110 @@ namespace negocio
                 comando.CommandType = System.Data.CommandType.Text;
                 if (id == "")
                 {
-                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1";
+                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.SISTEMAOPERATIVO,P.TIPODISCO, P.PLACAVIDEO,P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1";
 
                 }
                 if (id != "")
                 {
-                    comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND P.ID= " + id.ToString();
+                    comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO,P.SISTEMAOPERATIVO,P.TIPODISCO, P.PLACAVIDEO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND P.ID= " + id.ToString();
+
+                }
+                comando.Connection = conexion;
+                conexion.Open();
+
+                lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    Producto prod = new Producto();
+                    prod.Id = (int)lector["ID"];
+                    if (!(lector["NOMBRE"] is DBNull))
+                        prod.Nombre = (string)lector["NOMBRE"];
+                    if (!(lector["DESCRIPCION"] is DBNull))
+                        prod.Descripcion = (string)lector["DESCRIPCION"];
+                    if (!(lector["IMAGEN1"] is DBNull))
+                        prod.Imagen1 = (string)lector["IMAGEN1"];
+                    if (!(lector["IMAGEN2"] is DBNull))
+                        prod.Imagen2 = (string)lector["IMAGEN2"];
+                    if (!(lector["IMAGEN3"] is DBNull))
+                        prod.Imagen3 = (string)lector["IMAGEN3"];
+                    if (!(lector["IMAGEN4"] is DBNull))
+                        prod.Imagen4 = (string)lector["IMAGEN4"];
+                    if (!(lector["PRECIO"] is DBNull))
+                        prod.Precio = (decimal)lector["PRECIO"];
+                    if (!(lector["MEMORIAINTERNA"] is DBNull))
+                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
+                    if (!(lector["MEMORIARAM"] is DBNull))
+                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
+                    if (!(lector["PROCESADOR"] is DBNull))
+                        prod.Procesador = (string)lector["PROCESADOR"];
+                    if (!(lector["TIPODISCO"] is DBNull))
+                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                    if (!(lector["SISTEMAOPERATIVO"] is DBNull))
+                        prod.SistemaOperativo = (string)lector["SISTEMAOPERATIVO"];
+                    if (!(lector["TIPODISCO"] is DBNull))
+                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                    if (!(lector["PLACAVIDEO"] is DBNull))
+                        prod.PlacaVideo = (string)lector["PLACAVIDEO"];
+                    if (!(lector["ESTADO"] is DBNull))
+                        prod.Estado = (bool)lector["ESTADO"];
+
+                    prod.Marca = new Marca();
+                    prod.Marca.Id = (int)lector["IDMARCA"];
+                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+
+
+                    prod.Tipo = new Tipo();
+                    prod.Tipo.Id = (int)lector["IDTIPO"];
+                    //SI EL TIPO DE ARTICULO NO ES NULO LO LEE
+                    if (!(lector["NOMBRETIPO"] is DBNull))
+                        prod.Tipo.Nombre = (string)lector["NOMBRETIPO"];
+
+
+
+                    lista.Add(prod);
+                }
+
+                //conexion.Close();
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public List<Producto> listarXFiltro(int tipoFiltro)
+        {
+            List<Producto> lista = new List<Producto>();
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+
+            try
+            {
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 ";
+
+                switch (tipoFiltro)
+                {
+                    case 1:
+                        comando.CommandText += "ORDER BY P.PRECIO ASC ";
+                        break;
+                    case 2:
+                        comando.CommandText += "ORDER BY P.PRECIO DESC ";
+                        break;
+                    case 3:
+                        comando.CommandText += "ORDER BY P.NOMBRE ASC";
+                        break;
+                    case 4:
+                        comando.CommandText += "ORDER BY P.NOMBRE DESC";
+                        break;
 
                 }
                 comando.Connection = conexion;
@@ -92,6 +190,7 @@ namespace negocio
                 conexion.Close();
             }
         }
+
         public Producto listaProductoAgregado()
         {
             Producto lista = new Producto();

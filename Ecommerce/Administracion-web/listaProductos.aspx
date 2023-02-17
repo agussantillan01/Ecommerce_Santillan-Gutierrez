@@ -3,11 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<script type="text/javascript">
+    <%if ((dominio.Usuario)Session["Usuario"] != null && tu == dominio.TipoUsuario.ADMIN)
+            {%>
+    <script type="text/javascript">
         function getValue() {
             return confirm("¿Estás seguro que lo quiere eliminar?");
         }
-</script>
+    </script>
     <div class="row">
         <hr />
         <div style="text-align: center;">
@@ -46,5 +48,12 @@
         </div>
         <div class="col-4"></div>
     </div>
+            <%} else
+            {
+   Session.Add("Error", "recuerde Loguearse");
+    Response.Redirect("Error.aspx", false);
+
+            } %>
+
 
 </asp:Content>

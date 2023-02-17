@@ -13,7 +13,7 @@
         </div>
         <div class="col-6"></div>
         <div class="col-2">
-            <div class="input-group input-group-sm mb-1" style="padding-bottom: 10px;">
+            <%--            <div class="input-group input-group-sm mb-1" style="padding-bottom: 10px;">
                 <asp:DropDownList ID="ddlFiltros" CssClass="form-control" runat="server">
                     <asp:ListItem Text="filtrar" Value="" Enabled="false"></asp:ListItem>
                     <asp:ListItem Text="Precio de Menor a Mayor" />
@@ -21,6 +21,30 @@
                     <asp:ListItem Text="A-Z" />
                     <asp:ListItem Text="Z-A" />
                 </asp:DropDownList>
+            </div>--%>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    Filtrar
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                    <li>
+
+                        <asp:Button Text="Precio de Menor a Mayor" Type="button" CssClass="dropdown-item" OnClick="btnMenorAMayor_Click" ID="btnMenorAMayor" runat="server" />
+
+                    </li>
+                    <li>
+                        <asp:Button Text="Precio de Mayor a menor" Type="button" CssClass="dropdown-item" OnClick="btnMayorAMenor_Click" ID="btnMayorAMenor" runat="server" />
+
+                    </li>
+                    <li>
+                        <asp:Button Text="A-Z" Type="button" CssClass="dropdown-item" ID="btnAZ" OnClick="btnAZ_Click" runat="server" />
+
+                    </li>
+                    <li>
+                        <asp:Button Text="Z-A" Type="button" CssClass="dropdown-item" ID="btnZA" OnClick="btnZA_Click" runat="server" />
+
+                    </li>
+                </ul>
             </div>
         </div>
         <br />

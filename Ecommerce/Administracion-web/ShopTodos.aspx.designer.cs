@@ -33,12 +33,39 @@ namespace Administracion_web
         protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// ddlFiltros control.
+        /// btnMenorAMayor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltros;
+        protected global::System.Web.UI.WebControls.Button btnMenorAMayor;
+
+        /// <summary>
+        /// btnMayorAMenor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMayorAMenor;
+
+        /// <summary>
+        /// btnAZ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAZ;
+
+        /// <summary>
+        /// btnZA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnZA;
     }
 }
