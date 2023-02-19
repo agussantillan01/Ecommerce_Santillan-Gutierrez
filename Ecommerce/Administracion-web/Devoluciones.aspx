@@ -49,7 +49,7 @@
                             <td style="padding-right: 200px;"><%#Eval("color.Nombre") %></td>
                             <td style="padding-right: 80px;"><%#Eval("cantidad") %></td>
                             <td>
-                                <asp:Button Text="-" ID="btnEliminarProductoLista" CssClass="btn btn-danger" runat="server" />
+                                <asp:Button Text="-" ID="btnEliminarProductoLista" OnClick="btnEliminarProductoLista_Click" CssClass="btn btn-danger" AutoPostback="true" CommandArgument='<%#Eval("producto.Id")+ ","+ Eval("color.Id")%>' runat="server" />
                             </td>
                         </tr>
                     </ItemTemplate>

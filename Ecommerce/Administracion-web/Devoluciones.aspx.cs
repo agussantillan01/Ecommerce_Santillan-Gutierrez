@@ -214,5 +214,39 @@ namespace Administracion_web
 
 
         }
+
+        protected void btnEliminarProductoLista_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                carrito = (listaTotalSolicitud)Session["total"];
+                //int idEliminarProductoLista = int.Parse(((Button)sender).CommandArgument);
+                string[] argument = ((Button)sender).CommandArgument.Split(',');
+                int firstValue = Convert.ToInt32(argument[0]);
+                int secondValue = Convert.ToInt32(argument[1]);
+
+                List<SolicitudDevolucion> listDevoluciones = (List<SolicitudDevolucion>)Session["listaEnCarro"];
+                SolicitudDevolucion elim = listDevoluciones.Find(x => x.color.Id == secondValue && x.producto.Id == firstValue);
+
+                listDevoluciones.Remove(elim);
+                Session.Add("listaEnCarro", listDevoluciones);
+                Session.Add("total", carrito);
+                tabla_productos.DataSource = null;
+                tabla_productos.DataSource = listDevoluciones;
+                tabla_productos.DataBind();
+
+
+
+
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
