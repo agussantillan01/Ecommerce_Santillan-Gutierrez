@@ -14,7 +14,7 @@
     <h2 style="font-family: Arial;">Registro de compras</h2>
 
 
-    <%if (tu != dominio.TipoUsuario.NORMAL)
+    <%if (tu == dominio.TipoUsuario.ADMIN)
         {%>
     <asp:GridView ID="dgvComprasTotal" runat="server" Style="width: 100%;" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped"
         OnClass="table" OnSelectedIndexChanged="dgvComprasTotal_SelectedIndexChanged">
@@ -31,6 +31,8 @@
     <%}
         else
         { %>
+    <h3 style="color: grey; text-align: center;">Ultimos productos Comprados</h3>
+    <p style="color: grey; text-align: center;">Recuerde que si su producto se encuentra en esta lista, aún puede realizar la devolución</p>
     <asp:GridView ID="dgvComprasXusuario" runat="server" Style="width: 100%;" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped"
         OnClass="table" OnSelectedIndexChanged="dgvComprasXusuario_SelectedIndexChanged">
         <Columns>

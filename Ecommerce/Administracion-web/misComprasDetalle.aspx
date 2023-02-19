@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%if(tu == dominio.TipoUsuario.NORMAL)
+    <hr />
+    <%if ((dominio.Usuario)Session["Usuario"] != null)
       {%>
             <asp:GridView ID="dgvDetalleCompra" runat="server" Style="width: 100%;" AutoGenerateColumns="false" CssClass="table table-ligth table-striped"
         OnClass="table">
@@ -15,4 +16,12 @@
     </asp:GridView>
 
       <%} %>
+
+    <%if(tu == dominio.TipoUsuario.NORMAL)
+            {%>
+    <a href="Devoluciones.aspx?IdVenta=<%= idVentaXparametro%>">¿ Quieres realizar una devolución ?</a>
+            <%} %>
+
+
+
 </asp:Content>

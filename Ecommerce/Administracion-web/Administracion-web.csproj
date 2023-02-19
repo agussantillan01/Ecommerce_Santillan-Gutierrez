@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreaCuenta.aspx" />
+    <Content Include="Devoluciones.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="agregarColores.aspx" />
     <Content Include="agregarTipo.aspx" />
@@ -94,6 +95,13 @@
     </Compile>
     <Compile Include="CreaCuenta.aspx.designer.cs">
       <DependentUpon>CreaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Devoluciones.aspx.cs">
+      <DependentUpon>Devoluciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Devoluciones.aspx.designer.cs">
+      <DependentUpon>Devoluciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

@@ -7,6 +7,7 @@ namespace Administracion_web
     public partial class misComprasDetalle_ : System.Web.UI.Page
     {
         public TipoUsuario tu;
+        public string idVentaXparametro; 
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,13 +25,12 @@ namespace Administracion_web
             else
             {
                 tu = usuario.TipoUsuario;
-                if (tu == TipoUsuario.NORMAL)
-                {
                     string idVenta = Request.QueryString["IdCompraDetalle"].ToString();
+                    idVentaXparametro = Request.QueryString["IdCompraDetalle"].ToString(); ;
                     CompraNegocio negocio = new CompraNegocio();
                     dgvDetalleCompra.DataSource = negocio.listarXVenta(idVenta);
                     dgvDetalleCompra.DataBind();
-                }
+                
 
             }
 

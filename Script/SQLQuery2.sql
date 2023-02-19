@@ -68,6 +68,18 @@ IDCOLOR INT FOREIGN KEY REFERENCES COLORES (ID),
 CANTIDAD INT NOT NULL, 
 PRECIO MONEY NOT NULL
 )
+GO 
+CREATE TABLE DEVOLUCIONES (
+IDVENTA INT, 
+IDPRODUCTO INT, 
+IDCOLOR INT, 
+IDUSUARIO INT, 
+MOTIVO VARCHAR (500),
+DEVUELTO BIT DEFAULT 0
+)
+
+ALTER TABLE DEVOLUCIONES
+ADD CANTIDAD INT
 
 
 -- ****************** PROCEDIMIENTOS ALMACENADOS ******************
@@ -286,6 +298,33 @@ ELSE BEGIN
 insert into Usuarios (NOMBRE,APELLIDO,Email,Contraseña,TipoUser) output inserted.Id values (@Nombre,@Apellido,@Email,@Contraseña,1)
 END 
 END
+
+GO
+
+
+CREATE PROCEDURE SP_InsertaSolicitudDevolucion(
+@IdVenta INT,
+@IdProducto INT,
+@IdColor INT,
+@IdUsuario INT,
+@Motivo VARCHAR (500),
+@Cantidad INT
+) AS
+BEGIN 
+Insert into DEVOLUCIONES VALUES (@IdVenta, @IdProducto, @IdColor, @IdUsuario, @Motivo, 0, @Cantidad)
+END
+
+
+
+GO
+INSERT INTO COLORES VALUES ('Blanco')
+INSERT INTO COLORES VALUES ('Negro')
+INSERT INTO COLORES VALUES ('Gris')
+INSERT INTO COLORES VALUES ('Rojo')
+INSERT INTO COLORES VALUES ('Azul')
+INSERT INTO COLORES VALUES ('Verde')
+
+
 
 
 

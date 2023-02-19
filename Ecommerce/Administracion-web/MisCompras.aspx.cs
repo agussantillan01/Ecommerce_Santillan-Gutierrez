@@ -38,15 +38,13 @@ namespace Administracion_web
 
             }
 
-            //asca
-
 
         }
 
         protected void dgvComprasTotal_SelectedIndexChanged(object sender, EventArgs e)
         {
             string idDetalleVenta = dgvComprasTotal.SelectedDataKey.Value.ToString();
-            Response.Redirect("ShopTodos.aspx?IdCompraDetalle=" + idDetalleVenta);
+            Response.Redirect("MisComprasDetalle.aspx?IdCompraDetalle=" + idDetalleVenta);
 
         }
 

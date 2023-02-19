@@ -38,7 +38,6 @@ namespace negocio
         public List<carritoCompra>  listar(string IdUsuario="")
         {
 
-
             List<carritoCompra> lista = new List<carritoCompra>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -50,7 +49,7 @@ namespace negocio
                 comando.CommandText = "SELECT V.ID, U.ID AS IDUSUARIO,U.NOMBRE AS NOMBREUSUARIO, U.APELLIDO AS APELLIDOUSUARIO,U.EMAIL AS EMAILUSUARIO,FECHAVENTA ,PRECIOTOTAL FROM VENTAS V INNER JOIN USUARIOS U ON V.IDUSUARIO = U.ID";
                 if (IdUsuario != "")
                 {
-                    comando.CommandText += " WHERE U.ID = "+ IdUsuario; 
+                    comando.CommandText += " WHERE U.ID = "+ IdUsuario+ " AND GETDATE()-FECHAVENTA<5"; 
                 }
 
 
@@ -124,6 +123,58 @@ namespace negocio
 
         }
 
+
+
+        public List<Color> listaColoresXVentaXProducto(string idVenta, string idProducto)
+        {
+
+
+            List<Color> lista = new List<Color>();
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            try
+            {
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT C.ID AS IDCOLOR, C.NOMBRE AS NOMBRECOLOR FROM DETALLE_VENTA INNER JOIN COLORES C ON C.ID = IDCOLOR WHERE IDVENTA=" + idVenta + " AND IDPRODUCTO= " + idProducto;
+
+
+                comando.Connection = conexion;
+                conexion.Open();
+
+                lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+
+                    Color color = new Color();
+                    color.Id = (int)lector["IDCOLOR"];
+                    color.Nombre = (string)lector["NOMBRECOLOR"];
+
+
+
+                    lista.Add(color);
+                }
+
+
+                return lista;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
+
         public List<itemCarrito> listarXVenta(string idVenta)
         {
 
@@ -179,6 +230,8 @@ namespace negocio
                 conexion.Close();
             }
         }
+
+
 
     }
 }
