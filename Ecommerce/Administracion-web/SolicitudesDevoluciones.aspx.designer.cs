@@ -11,34 +11,25 @@ namespace Administracion_web
 {
 
 
-    public partial class MisCompras
+    public partial class SolicitudesDevoluciones
     {
 
         /// <summary>
-        /// btnDirigePestañaSolicitudesDevoluciones control.
+        /// dgvSolicitudesDeDevolucion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDirigePestañaSolicitudesDevoluciones;
+        protected global::System.Web.UI.WebControls.GridView dgvSolicitudesDeDevolucion;
 
         /// <summary>
-        /// dgvComprasTotal control.
+        /// lblPrueba control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvComprasTotal;
-
-        /// <summary>
-        /// dgvComprasXusuario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvComprasXusuario;
+        protected global::System.Web.UI.WebControls.Label lblPrueba;
     }
 }

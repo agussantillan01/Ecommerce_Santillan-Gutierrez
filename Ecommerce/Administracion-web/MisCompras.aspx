@@ -11,11 +11,13 @@
         }
         else
         {%>
-    <h2 style="font-family: Arial;">Registro de compras</h2>
+    
 
 
     <%if (tu == dominio.TipoUsuario.ADMIN)
         {%>
+    <h2 style="font-family: Arial; color:grey;">Registro de ventas</h2>
+    <asp:Button Text="Solicitudes de devolución" ID="btnDirigePestañaSolicitudesDevoluciones" OnClick="btnDirigePestañaSolicitudesDevoluciones_Click" cssclass="btn btn-outline-primary" runat="server" />
     <asp:GridView ID="dgvComprasTotal" runat="server" Style="width: 100%;" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped"
         OnClass="table" OnSelectedIndexChanged="dgvComprasTotal_SelectedIndexChanged">
         <Columns>

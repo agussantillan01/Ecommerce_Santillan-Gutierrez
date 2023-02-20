@@ -54,6 +54,11 @@ namespace Administracion_web
             Response.Redirect("MisComprasDetalle.aspx?IdCompraDetalle=" + idDetalleCompra);
 
         }
+
+        protected void btnDirigePestañaSolicitudesDevoluciones_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SolicitudesDevoluciones.aspx",false);
+        }
     }
 }
 

@@ -13,6 +13,7 @@ namespace dominio
     }
     public class SolicitudDevolucion
     {
+        public int Id { get; set; }
         public int IdVenta { get; set; }
         public Producto producto { get; set; }
         public Color color { get; set; }
