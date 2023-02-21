@@ -17,8 +17,6 @@ namespace Administracion_web
             List<SolicitudDevolucion> lista = negocio.listaSolicitudes();
             dgvSolicitudesDeDevolucion.DataSource = lista;
             dgvSolicitudesDeDevolucion.DataBind();
-            
-
 
         }
 

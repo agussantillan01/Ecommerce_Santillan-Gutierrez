@@ -37,7 +37,7 @@
     </script>
     <div class="row">
         <hr />
-        <asp:GridView runat="server" ID="dgvSolicitudesDeDevolucion" Style="width: 60%;" AutoPostBack="false" OnClass="table" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="gridview-style" OnRowCommand="dgvSolicitudesDeDevolucion_RowCommand1">
+        <asp:GridView runat="server" ID="dgvSolicitudesDeDevolucion" Style="width: 60%;" AutoPostBack="false" OnClass="table" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-success table-striped" OnRowCommand="dgvSolicitudesDeDevolucion_RowCommand1">
 
             <Columns>
                 <asp:BoundField HeaderText="#id" DataField="Id" />
@@ -47,7 +47,7 @@
                 <asp:BoundField HeaderText="Email" DataField="usuario.Email" />
                 <asp:BoundField HeaderText="Producto" DataField="producto.Nombre" />
                 <asp:BoundField HeaderText="Color" DataField="color.Nombre" />
-                <asp:BoundField HeaderText="Motivo" DataField="motivo" ItemStyle-Width="20%" />
+                <asp:BoundField HeaderText="Motivo" DataField="motivo" ItemStyle-Width="50%"/>
                 <asp:BoundField HeaderText="Cantidad" DataField="cantidad" />
                 <asp:ButtonField Text="Aceptar" ControlStyle-CssClass="btn btn-success" CommandName="Boton1" />
                 <asp:ButtonField Text="Cancelar" ControlStyle-CssClass="btn btn-danger" CommandName="Boton2" />

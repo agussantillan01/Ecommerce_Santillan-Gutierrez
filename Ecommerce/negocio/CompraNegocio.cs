@@ -49,7 +49,7 @@ namespace negocio
                 comando.CommandText = "SELECT V.ID, U.ID AS IDUSUARIO,U.NOMBRE AS NOMBREUSUARIO, U.APELLIDO AS APELLIDOUSUARIO,U.EMAIL AS EMAILUSUARIO,FECHAVENTA ,PRECIOTOTAL FROM VENTAS V INNER JOIN USUARIOS U ON V.IDUSUARIO = U.ID";
                 if (IdUsuario != "")
                 {
-                    comando.CommandText += " WHERE U.ID = "+ IdUsuario+ " AND GETDATE()-FECHAVENTA<5"; 
+                    comando.CommandText += " WHERE U.ID = "+ IdUsuario+ " AND GETDATE()-FECHAVENTA<3"; 
                 }
 
 
