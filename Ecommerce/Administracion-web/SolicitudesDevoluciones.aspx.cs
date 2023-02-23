@@ -42,6 +42,7 @@ namespace Administracion_web
                 SolicitudDevolucion solicitud = negocio.listaSolicitudes().Find(x => x.Id == idSeleccionado);
                 negocio.sumoStock(solicitud.producto.Id, solicitud.color.Id, solicitud.cantidad);
                 negocio.DevolucionAceptada(idSeleccionado);
+                negocio.ActualizaTablaCompra(solicitud.IdVenta, solicitud.producto.Id, solicitud.color.Id, solicitud.cantidad);
                
 
                 Response.Redirect("misCompras.aspx", false);

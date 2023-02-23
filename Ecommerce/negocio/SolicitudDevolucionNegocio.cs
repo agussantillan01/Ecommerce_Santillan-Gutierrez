@@ -99,7 +99,31 @@ namespace negocio
             }
         }
 
+        public void ActualizaTablaCompra(int IdVenta, int IdProducto, int IdColor, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_ACTUALIZARCOMPRA");
+                datos.setearParametro("@IdVenta", IdVenta);
+                datos.setearParametro("@IdProducto", IdProducto);
+                datos.setearParametro("@IdColor", IdColor);
+                datos.setearParametro("@Cantidad", cantidad);
 
+
+                datos.ejectutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
         public void DevolucionAceptada(int id)
         {
             AccesoDatos datos = new AccesoDatos();
