@@ -60,5 +60,19 @@ namespace Administracion_web
             ListaProductos = productoNegocio.listarXFiltroCompus(4);
 
         }
+        protected void btnSSD_Click(object sender, EventArgs e)
+        {
+            //4
+            productoNegocio productoNegocio = new productoNegocio();
+            ListaProductos = productoNegocio.listarXFiltroCompus(5);
+
+        }
+        protected void btnHDD_Click(object sender, EventArgs e)
+        {
+            //4
+            productoNegocio productoNegocio = new productoNegocio();
+            ListaProductos = productoNegocio.listarXFiltroCompus(6);
+
+        }
     }
 }

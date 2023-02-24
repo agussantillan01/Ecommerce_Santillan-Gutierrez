@@ -380,6 +380,7 @@ namespace negocio
                     case 4:
                         comando.CommandText += "ORDER BY P.NOMBRE DESC";
                         break;
+   
 
                 }
                 comando.Connection = conexion;
@@ -550,8 +551,10 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND T.NOMBRE = 'PC' OR T.NOMBRE = 'NOTEBOOK' OR T.NOMBRE ='COMPUTADORA'  ";
-
+                
+                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND T.NOMBRE = 'PC'  ";
+                
+             
                 switch (tipoFiltro)
                 {
                     case 1:
@@ -566,7 +569,12 @@ namespace negocio
                     case 4:
                         comando.CommandText += "ORDER BY P.NOMBRE DESC";
                         break;
-
+                    case 5:
+                        comando.CommandText += "AND P.TIPODISCO = 'SSD'";
+                        break;
+                    case 6:
+                        comando.CommandText += "AND P.TIPODISCO = 'HDD'";
+                        break;
                 }
                 comando.Connection = conexion;
                 conexion.Open();

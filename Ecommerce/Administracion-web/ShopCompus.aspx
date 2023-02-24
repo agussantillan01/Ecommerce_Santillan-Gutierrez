@@ -12,6 +12,42 @@
             </asp:Panel>
         </div>
         <div class="col-6"></div>
+            <div class="col-2">
+         <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    Filtrar
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                    <li>
+
+                        <asp:Button Text="Precio de Menor a Mayor" Type="button" CssClass="dropdown-item" OnClick="btnMenorAMayor_Click1" ID="Button1" runat="server" />
+
+                    </li>
+                    <li>
+                        <asp:Button Text="Precio de Mayor a menor" Type="button" CssClass="dropdown-item" OnClick="btnMayorAMenor_Click1" ID="Button2" runat="server" />
+
+                    </li>
+                    <li>
+                        <asp:Button Text="A-Z" Type="button" CssClass="dropdown-item" ID="Button3" OnClick="btnAZ_Click1" runat="server" />
+
+                    </li>
+                    <li>
+                        <asp:Button Text="Z-A" Type="button" CssClass="dropdown-item" ID="Button4" OnClick="btnZA_Click1" runat="server" />
+
+                    </li>
+
+                              <li>
+
+                        <asp:Button Text="Disco SSD" Type="button" CssClass="dropdown-item" OnClick="btnSSD_Click" ID="btnSSD" runat="server" />
+                       </li>
+                     <li>
+                        <asp:Button Text="Disco HDD" Type="button" CssClass="dropdown-item" OnClick="btnHDD_Click" ID="BtnHDD" runat="server" />
+                     
+                    </li>
+
+                </ul>
+            </div>
+           </div>
         <div class="col-2">
             <%--            <div class="input-group input-group-sm mb-1" style="padding-bottom: 10px;">
                 <asp:DropDownList ID="ddlFiltros" CssClass="form-control" runat="server">
@@ -22,36 +58,13 @@
                     <asp:ListItem Text="Z-A" />
                 </asp:DropDownList>
             </div>--%>
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                    Filtrar
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                    <li>
-
-                        <asp:Button Text="Precio de Menor a Mayor" Type="button" CssClass="dropdown-item" OnClick="btnMenorAMayor_Click1" ID="btnMenorAMayor1" runat="server" />
-
-                    </li>
-                    <li>
-                        <asp:Button Text="Precio de Mayor a menor" Type="button" CssClass="dropdown-item" OnClick="btnMayorAMenor_Click1" ID="btnMayorAMenor1" runat="server" />
-
-                    </li>
-                    <li>
-                        <asp:Button Text="A-Z" Type="button" CssClass="dropdown-item" ID="btnAZ1" OnClick="btnAZ_Click1" runat="server" />
-
-                    </li>
-                    <li>
-                        <asp:Button Text="Z-A" Type="button" CssClass="dropdown-item" ID="btnZA1" OnClick="btnZA_Click1" runat="server" />
-
-                    </li>
-
-                </ul>
-            </div>
-        </div>
+ 
+              </div>
+     
         <br />
         <br />
     </div>
-
+  
 
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
