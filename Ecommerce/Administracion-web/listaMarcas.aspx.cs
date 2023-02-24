@@ -58,30 +58,30 @@ namespace Administracion_web
                     ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
                     List<ColoresXproducto> lista = negocio.listarL();
 
-                    foreach (var item in lista)
-                    {
+                    //foreach (var item in lista)
+                    //{
 
 
-                        if (item.Producto.Marca.Id == idSeleccionado || item.Producto.Marca == null)
-                        {
-                            if (item.Stock == 0)
-                            {
+                        //if (item.Producto.Marca.Id == idSeleccionado)
+                        //{
+                        //    if (item.Stock == 0)
+                        //    {
                                 negocioMarca.eliminarConSP(idSeleccionado);
                                 Response.Redirect("listaMarcas.aspx");
 
-                                break;
-                            }
-                            else
-                            {
-                                Session.Add("Error", "No se ha podido eliminar la marca ya que aún cuenta con stock");
-                                Response.Redirect("Error.aspx", false);
+                        //        break;
+                        //    }
+                        //    else
+                        //    {
+                        //        Session.Add("Error", "No se ha podido eliminar la marca ya que aún cuenta con stock");
+                        //        Response.Redirect("Error.aspx", false);
 
-                                break;
-                            }
+                        //        break;
+                        //    }
 
-                        }
+                        //}
 
-                    }
+                    //}
 
                 }
             }
