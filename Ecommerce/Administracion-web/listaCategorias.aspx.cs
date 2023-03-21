@@ -49,30 +49,30 @@ namespace Administracion_web
                     ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
                     List<ColoresXproducto> lista = negocio.listarL();
 
-                    //foreach (var item in lista)
-                    //{
+                    foreach (var item in lista)
+                    {
 
 
-                        //if (item.Producto.Tipo.Id == idSeleccionado)
-                        //{
-                            
-                            
+                        if (item.Producto.Tipo.Id == idSeleccionado || item.Producto.Tipo == null)
+                        {
+                            if (item.Stock == 0)
+                            {
                                 negocioTipo.eliminarConSP(idSeleccionado);
                                 Response.Redirect("listaCategorias.aspx");
 
-                            //    break;
-                            //}
-                            //else
-                            //{
-                            //    Session.Add("Error", "No se ha podido eliminar la categoria, ya que aún cuenta con stock");
-                            //    Response.Redirect("Error.aspx", false);
+                                break;
+                            }
+                            else
+                            {
+                                Session.Add("Error", "No se ha podido eliminar la categoria, ya que aún cuenta con stock");
+                                Response.Redirect("Error.aspx", false);
 
-                            //    break;
-                            //}
+                                break;
+                            }
 
-                        
+                        }
 
-                    //}
+                    }
 
                 }
             }

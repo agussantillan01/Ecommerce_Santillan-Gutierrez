@@ -75,45 +75,59 @@ namespace Administracion_web
         protected void btnSiguiente_Click(object sender, EventArgs e)
         {
 
-            Producto nuevo = new Producto();
-            nuevo.Nombre = txtNombre.Text;
-            nuevo.Descripcion = txtDescripcion.Text;
-            nuevo.Marca = new Marca();
-            nuevo.Marca.Id = int.Parse(ddlMarca.SelectedValue);
-            nuevo.Tipo = new Tipo();
-            nuevo.Tipo.Id = int.Parse(ddlTipo.SelectedValue);
-            nuevo.MemoriaInterna = int.Parse(txtMemoriaInterna.Text);
-            nuevo.MemoriaRam = int.Parse(txtMemoriaRam.Text);
-            nuevo.Procesador = txtProcesador.Text.ToString();
-            nuevo.TipoDisco = txtDisco.Text.ToString();
-            nuevo.SistemaOperativo = txtSistemaOperativo.Text;
-            nuevo.PlacaVideo = txtPlacaVideo.Text;
-            nuevo.Imagen1 = txtImagenURL1.Text;
-            nuevo.Imagen2 = txtImagenURL2.Text;
-            nuevo.Imagen3 = txtImagenURL3.Text;
-            nuevo.Imagen4 = txtImagenURL4.Text;
-            nuevo.Precio = decimal.Parse(txtPrecio.Text);
-            productoNegocio negocioProducto = new productoNegocio();
-
-            if (Request.QueryString["id"] != null)
+            if (txtMemoriaRam.Text != "" && txtMemoriaInterna.Text != "")
             {
-                nuevo.Id = int.Parse(Request.QueryString["id"]);
-                negocioProducto.modificarConSP(nuevo);
-                Session.Add("IdProductoAgregado", nuevo.Id); //mando por sesion el id del producto agregado
-                Response.Redirect("agregarColores.aspx", false); //Lo recibo en pesteña stock... Asi al agregar stock, tengo el numero del id de producto ya que por parametro mando el ID del color seleccionado
+                Producto nuevo = new Producto();
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Descripcion = txtDescripcion.Text;
+                nuevo.Marca = new Marca();
+                nuevo.Marca.Id = int.Parse(ddlMarca.SelectedValue);
+                nuevo.Tipo = new Tipo();
+                nuevo.Tipo.Id = int.Parse(ddlTipo.SelectedValue);
+                if (txtMemoriaInterna.Text == "" || txtMemoriaRam.Text == "")
+                {
+                    nuevo.MemoriaInterna = null;
+                    nuevo.MemoriaRam = null;
+                }
+                else
+                {
+                    nuevo.MemoriaInterna = int.Parse(txtMemoriaInterna.Text);
+                    nuevo.MemoriaRam = int.Parse(txtMemoriaRam.Text);
+                }
 
+                nuevo.Procesador = txtProcesador.Text.ToString();
+                nuevo.TipoDisco = txtDisco.Text.ToString();
+                nuevo.SistemaOperativo = txtSistemaOperativo.Text;
+                nuevo.PlacaVideo = txtPlacaVideo.Text;
+                nuevo.Imagen1 = txtImagenURL1.Text;
+                nuevo.Imagen2 = txtImagenURL2.Text;
+                nuevo.Imagen3 = txtImagenURL3.Text;
+                nuevo.Imagen4 = txtImagenURL4.Text;
+                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+                productoNegocio negocioProducto = new productoNegocio();
+
+                if (Request.QueryString["id"] != null)
+                {
+                    nuevo.Id = int.Parse(Request.QueryString["id"]);
+                    negocioProducto.modificarConSP(nuevo);
+                    Session.Add("IdProductoAgregado", nuevo.Id); //mando por sesion el id del producto agregado
+                    Response.Redirect("agregarColores.aspx", false); //Lo recibo en pesteña stock... Asi al agregar stock, tengo el numero del id de producto ya que por parametro mando el ID del color seleccionado
+
+
+                }
+                else
+                {
+
+                    negocioProducto.agregar(nuevo);
+                    Producto pr = negocioProducto.listaProductoAgregado();
+                    Session.Add("IdProductoAgregado", pr.Id); //mando por sesion el id del producto agregado
+                    Response.Redirect("agregarColores.aspx", false); //Lo recibo en pesteña stock... Asi al agregar stock, tengo el numero del id de producto ya que por parametro mando el ID del color seleccionado
+
+
+                }
 
             }
-            else
-            {
 
-                negocioProducto.agregar(nuevo);
-                Producto pr = negocioProducto.listaProductoAgregado();
-                Session.Add("IdProductoAgregado", pr.Id); //mando por sesion el id del producto agregado
-                Response.Redirect("agregarColores.aspx", false); //Lo recibo en pesteña stock... Asi al agregar stock, tengo el numero del id de producto ya que por parametro mando el ID del color seleccionado
-
-
-            }
 
 
 

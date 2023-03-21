@@ -47,20 +47,31 @@ namespace Administracion_web
 
         protected void ddlColores_SelectedIndexChanged(object sender, EventArgs e)
         {
-            colorNegocio negocio = new colorNegocio();
-            List<Color> lista = negocio.listarTodos();
 
-             idColor = int.Parse(ddlColores.SelectedItem.Value);
-            colorSeleccionado = lista.Find(x => x.Id == idColor);
-            if (idColor != 0)
+            try
+            {
+                colorNegocio negocio = new colorNegocio();
+                List<Color> lista = negocio.listarTodos();
+
+                idColor = int.Parse(ddlColores.SelectedItem.Value);
+                colorSeleccionado = lista.Find(x => x.Id == idColor);
+                if (idColor != 0 || idColor != null)
+                {
+
+                    ColoresXproductoNegocio cxpNegocio = new ColoresXproductoNegocio();
+                    List<ColoresXproducto> listacxp = cxpNegocio.listarTodo();
+                    ColoresXproducto cxp = listacxp.Find(x => x.Producto.Id == prod.Id && x.Color.Id == idColor);
+
+                    lblStockDisponible.Text = "Hay " + cxp.Stock.ToString() + " Productos en stock";
+                }
+            }
+            catch (Exception)
             {
 
-                ColoresXproductoNegocio cxpNegocio = new ColoresXproductoNegocio();
-                List<ColoresXproducto> listacxp = cxpNegocio.listarTodo();
-                ColoresXproducto cxp = listacxp.Find(x => x.Producto.Id == prod.Id && x.Color.Id == idColor);
-
-                lblStockDisponible.Text = "Hay " + cxp.Stock.ToString() + " Productos en stock";
+                Session.Add("Error", "Recuerde seleccionar un color correcto!");
+                Response.Redirect("Error.aspx", false);
             }
+
 
         }
 

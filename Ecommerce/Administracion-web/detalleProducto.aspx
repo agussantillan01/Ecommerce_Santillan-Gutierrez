@@ -35,18 +35,24 @@
         <div class="col-2"></div>
         <div class="col-4">
             <div style="display: inline-block; padding-left: 74px;">
-                <h5 style="padding-top: 30px;" class="card-title"><%= prod.Nombre %></h5>
-                <p class="card-text" style="font-weight: bold;"><%= prod.Marca.Nombre%></p>
+                <h4 style="padding-top: 30px;" class="card-title"><%= prod.Nombre %></h4>
+                <h6 class="card-text" style="font-weight: bold;"><%= prod.Marca.Nombre%></h6>
                 <p class="card-text" style="font-weight: bold;"><%= prod.Tipo.Nombre%></p>
-                <p class="card-text"><%= prod.Descripcion %></p>
                 <%if (prod.Tipo.Nombre == "Notebook" || prod.Tipo.Nombre == "PC")
                     {%>
-                <p style="color: black;" class="card-text"><%= prod.TipoDisco %></p>
-                <p style="color: black;" class="card-text"><%= prod.Procesador %></p>
-                <p style="color: black;" class="card-text"><%= prod.SistemaOperativo%></p>
-                <p style="color: black;" class="card-text"><%= prod.PlacaVideo%></p>
+
+                <p style="color: black;" class="card-text">DISCO:          <%= prod.TipoDisco %></p>
+                <p style="color: black;" class="card-text">PROCESADOR:     <%= prod.Procesador %></p>
+                <p style="color: black;" class="card-text">SIST. OPERATIVO:<%= prod.SistemaOperativo%></p>
+                <p style="color: black;" class="card-text">PLACA VIDEO:    <%= prod.PlacaVideo%></p>
                 <% } %>
+                <p style="color: black;" class="card-text">MEMORIA INTERNA:<%= prod.MemoriaInterna%> GB</p>
+                <p style="color: black;" class="card-text">MEMORIA RAM:   <%= prod.MemoriaRam%> GB</p>
                 <p class="card-text"><small class="text-muted">$ <%= prod.Precio%></small></p>
+                <%if (prod.Descripcion != "")
+                    {%>
+                <p style="color: black; background: #EAECEE;" class="card-text">DESCRIPCION:   <%= prod.Descripcion%></p>
+                <%} %>
                 <asp:DropDownList ID="ddlColores" OnDataBound="ddlColores_DataBound" OnSelectedIndexChanged="ddlColores_SelectedIndexChanged" AutoPostBack="true" CssClass="form-select" runat="server"></asp:DropDownList>
                 <hr />
                 <br />

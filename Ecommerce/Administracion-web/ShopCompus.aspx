@@ -3,95 +3,63 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
     <div class="row">
-        <div class="col-4">
+        <div class="col-4" style="padding:10px;">
             <asp:Panel runat="server" CssClass="input-group">
-                <asp:TextBox ID="txtSearch1" MaxLength="20" runat="server" CssClass="form-control"></asp:TextBox>
-                <asp:Button ID="btnSearch1" runat="server" CssClass="btn btn-primary" Text="Buscar" />
+                <asp:TextBox ID="txtSearch" MaxLength="20" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary" Text="Buscar" />
             </asp:Panel>
         </div>
         <div class="col-6"></div>
-            <div class="col-2">
-         <div class="btn-group">
+        <div class="col-2">
+            <div class="btn-group" style="padding:10px;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                     Filtrar
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                     <li>
 
-                        <asp:Button Text="Precio de Menor a Mayor" Type="button" CssClass="dropdown-item" OnClick="btnMenorAMayor_Click1" ID="Button1" runat="server" />
+                        <asp:Button Text="Precio de Menor a Mayor" Type="button" CssClass="dropdown-item" OnClick="btnMenorAMayor_Click" ID="btnMenorAMayor" runat="server" />
 
                     </li>
                     <li>
-                        <asp:Button Text="Precio de Mayor a menor" Type="button" CssClass="dropdown-item" OnClick="btnMayorAMenor_Click1" ID="Button2" runat="server" />
+                        <asp:Button Text="Precio de Mayor a menor" Type="button" CssClass="dropdown-item" OnClick="btnMayorAMenor_Click" ID="btnMayorAMenor" runat="server" />
 
                     </li>
                     <li>
-                        <asp:Button Text="A-Z" Type="button" CssClass="dropdown-item" ID="Button3" OnClick="btnAZ_Click1" runat="server" />
-
+                        <asp:Button Text="A-Z" Type="button" CssClass="dropdown-item" ID="btnAZ" OnClick="btnAZ_Click" runat="server" />
                     </li>
                     <li>
-                        <asp:Button Text="Z-A" Type="button" CssClass="dropdown-item" ID="Button4" OnClick="btnZA_Click1" runat="server" />
+                        <asp:Button Text="Z-A" Type="button" CssClass="dropdown-item" ID="btnZA" OnClick="btnZA_Click" runat="server" />
 
                     </li>
-
-                              <li>
-
-                        <asp:Button Text="Disco SSD" Type="button" CssClass="dropdown-item" OnClick="btnSSD_Click" ID="btnSSD" runat="server" />
-                       </li>
-                     <li>
-                        <asp:Button Text="Disco HDD" Type="button" CssClass="dropdown-item" OnClick="btnHDD_Click" ID="BtnHDD" runat="server" />
-                     
-                    </li>
-
                 </ul>
             </div>
-           </div>
-        <div class="col-2">
-            <%--            <div class="input-group input-group-sm mb-1" style="padding-bottom: 10px;">
-                <asp:DropDownList ID="ddlFiltros" CssClass="form-control" runat="server">
-                    <asp:ListItem Text="filtrar" Value="" Enabled="false"></asp:ListItem>
-                    <asp:ListItem Text="Precio de Menor a Mayor" />
-                    <asp:ListItem Text="Precio de Mayor a Menor" />
-                    <asp:ListItem Text="A-Z" />
-                    <asp:ListItem Text="Z-A" />
-                </asp:DropDownList>
-            </div>--%>
- 
-              </div>
-     
+        </div>
         <br />
-        <br />
-    </div>
-  
-
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-
-        <% foreach (dominio.Producto item in ListaProductos)
-            {%>
-        <div class="col">
-            <div class="card h-100" style="width: 18rem;">
-                <img src="<% = item.Imagen1 %>" class="card-img-top img-fluid" alt="..." onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';">
-                <div class="card-body card-heigth-xs">
-                    <h5 class="card-title"><% = item.Marca.Nombre %></h5>
-                    <h5 class="card-title"><% = item.Nombre %></h5>
-                    <p style="color: grey;" class="card-text"><%= item.Precio %></p>
-                    <a href="detalleProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">
-                        <span>Ver detalle
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% foreach (dominio.Producto item in ListaProductos)
+                {%>
+            <div class="col">
+                <div class="card h-100" style="width: 18rem;">
+                    <img src="<% = item.Imagen1 %>" class="card-img-top img-fluid" alt="..." onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';">
+                    <div class="card-body card-heigth-xs">
+                        <h5 class="card-title"><% = item.Marca.Nombre %></h5>
+                        <h5 class="card-title"><% = item.Nombre %></h5>
+                        <p style="color: grey;" class="card-text"><%= item.Precio %></p>
+                        <a href="detalleProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">
+                            <span>Ver detalle
                                 <img style="width: 20px;" src="../img/visibility.png" alt="Alternate Text" /></span>
-                    </a>
-
-
+                        </a>
+                    </div>
                 </div>
             </div>
+
+
+            <%} %>
+            <br />
+            <br />
         </div>
-
-
-        <%} %>
-        <br />
-        <br />
     </div>
 
 

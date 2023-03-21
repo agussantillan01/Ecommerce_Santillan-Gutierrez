@@ -25,9 +25,23 @@ namespace Administracion_web
                 tu = usuario.TipoUsuario;
                 if (tu == TipoUsuario.ADMIN)
                 {
-                    CompraNegocio negocio = new CompraNegocio();
-                    dgvComprasTotal.DataSource = negocio.listar();
-                    dgvComprasTotal.DataBind();
+                    if (txtFechaDesde.Text != "" && txtFechaHasta.Text != "")
+                    {
+                        if (DateTime.Parse(txtFechaDesde.Text) < DateTime.Parse(txtFechaHasta.Text))
+                        {
+                            string desde = txtFechaDesde.Text.ToString();
+                            string hasta = txtFechaHasta.Text.ToString();
+                            CompraNegocio negocio = new CompraNegocio();
+                            dgvComprasTotal.DataSource = negocio.listarXfiltroFecha(desde,hasta);
+                            dgvComprasTotal.DataBind();
+                        }
+                    } else
+                    {
+                        CompraNegocio negocio = new CompraNegocio();
+                        dgvComprasTotal.DataSource = negocio.listar();
+                        dgvComprasTotal.DataBind();
+                    }
+
                 } else
                 {
                     CompraNegocio negocio = new CompraNegocio();

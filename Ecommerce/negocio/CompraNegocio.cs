@@ -35,6 +35,64 @@ namespace negocio
 
         }
 
+        //listarXfiltroFecha
+        public List<carritoCompra> listarXfiltroFecha(string desde, string hasta)
+        {
+
+            List<carritoCompra> lista = new List<carritoCompra>();
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            try
+            {
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT V.ID, U.ID AS IDUSUARIO,U.NOMBRE AS NOMBREUSUARIO, U.APELLIDO AS APELLIDOUSUARIO,U.EMAIL AS EMAILUSUARIO,FECHAVENTA ,PRECIOTOTAL FROM VENTAS V INNER JOIN USUARIOS U ON V.IDUSUARIO = U.ID WHERE FORMAT(FECHAVENTA, 'yyyy-MM-dd') between '"+desde+"' and '"+hasta+"'";
+
+
+
+                comando.Connection = conexion;
+                conexion.Open();
+
+                lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    carritoCompra carrito = new carritoCompra();
+                    carrito.Id = (int)lector["ID"];
+
+                    carrito.usuario = new Usuario();
+                    carrito.usuario.Id = (int)lector["IDUSUARIO"];
+                    carrito.usuario.Nombre = (string)lector["NOMBREUSUARIO"];
+                    carrito.usuario.Apellido = (string)lector["APELLIDOUSUARIO"];
+                    carrito.usuario.Email = (string)lector["EMAILUSUARIO"];
+
+                    if (!(lector["FECHAVENTA"] is DBNull))
+                        carrito.FechaCompra = (DateTime)lector["FECHAVENTA"];
+
+                    if (!(lector["PRECIOTOTAL"] is DBNull))
+                        carrito.total = (decimal)lector["PRECIOTOTAL"];
+
+
+                    lista.Add(carrito);
+                }
+
+
+                return lista;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
         public List<carritoCompra>  listar(string IdUsuario="")
         {
 
@@ -49,7 +107,7 @@ namespace negocio
                 comando.CommandText = "SELECT V.ID, U.ID AS IDUSUARIO,U.NOMBRE AS NOMBREUSUARIO, U.APELLIDO AS APELLIDOUSUARIO,U.EMAIL AS EMAILUSUARIO,FECHAVENTA ,PRECIOTOTAL FROM VENTAS V INNER JOIN USUARIOS U ON V.IDUSUARIO = U.ID";
                 if (IdUsuario != "")
                 {
-                    comando.CommandText += " WHERE U.ID = "+ IdUsuario+ " AND GETDATE()-FECHAVENTA<100"; 
+                    comando.CommandText += " WHERE U.ID = "+ IdUsuario+ " AND GETDATE()-FECHAVENTA<5"; 
                 }
 
 

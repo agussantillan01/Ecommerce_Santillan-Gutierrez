@@ -21,12 +21,25 @@ namespace Administracion_web
                 Usuario usuario = (Usuario)Session["Usuario"];
                 tu = usuario.TipoUsuario;
             }
-            productoNegocio productoNegocio = new productoNegocio();
-            ListaProductos = productoNegocio.listar();
+            if (txtSearch.Text == "")
+            {
+                productoNegocio productoNegocio = new productoNegocio();
+                ListaProductos = productoNegocio.listar();
+                Session.Add("listadoProductosListaProductos", ListaProductos);
+            }
+            else
+            {
+                productoNegocio productoNegocio = new productoNegocio();
+                ListaProductos = productoNegocio.listarConFiltro(txtSearch.Text.ToString());
+                Session.Add("listadoProductosListaProductos", ListaProductos);
+            }
+            repetidor.DataSource = ListaProductos;
+            repetidor.DataBind();
+
             if (!IsPostBack)
             {
-                repetidor.DataSource = ListaProductos;
-                repetidor.DataBind();
+                //repetidor.DataSource = ListaProductos;
+                //repetidor.DataBind();
             }
         }
 

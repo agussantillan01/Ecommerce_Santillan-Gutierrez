@@ -13,15 +13,6 @@
         </div>
         <div class="col-6"></div>
         <div class="col-2">
-            <%--            <div class="input-group input-group-sm mb-1" style="padding-bottom: 10px;">
-                <asp:DropDownList ID="ddlFiltros" CssClass="form-control" runat="server">
-                    <asp:ListItem Text="filtrar" Value="" Enabled="false"></asp:ListItem>
-                    <asp:ListItem Text="Precio de Menor a Mayor" />
-                    <asp:ListItem Text="Precio de Mayor a Menor" />
-                    <asp:ListItem Text="A-Z" />
-                    <asp:ListItem Text="Z-A" />
-                </asp:DropDownList>
-            </div>--%>
             <div class="btn-group">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                     Filtrar
@@ -79,7 +70,7 @@
         <br />
         <br />
     </div>
-
+    </div>
 
 
     <div class="row" style="padding-top: 100px;">

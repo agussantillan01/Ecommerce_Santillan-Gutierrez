@@ -21,16 +21,6 @@ namespace Administracion_web
         }
 
 
-        //protected void dgvSolicitudesDeDevolucion_SelectedIndexChanged1(object sender, EventArgs e)
-        //{
-        //    if (!IsPostBack)
-        //    {
-        //        string id = dgvSolicitudesDeDevolucion.SelectedDataKey.Value.ToString();
-        //        lblPrueba.Text = "Se ejecuta el evento!!";
-
-        //    }
-
-        //}
 
         protected void dgvSolicitudesDeDevolucion_RowCommand1(object sender, GridViewCommandEventArgs e)
         {
@@ -52,7 +42,11 @@ namespace Administracion_web
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 int idSeleccionado = int.Parse(dgvSolicitudesDeDevolucion.DataKeys[index]["Id"].ToString());
-                lblPrueba.Text = "Se ejecuta el evento!!";
+                SolicitudDevolucionNegocio negocio = new SolicitudDevolucionNegocio();
+                SolicitudDevolucion solicitud = negocio.listaSolicitudes().Find(x => x.Id == idSeleccionado);
+                negocio.cancelarSolicitudDevolucion(solicitud);
+
+                Response.Redirect("MisCompras.aspx", false);
 
             }
 

@@ -10,6 +10,30 @@ namespace negocio
 {
     public class SolicitudDevolucionNegocio
     {
+
+
+        public void cancelarSolicitudDevolucion(SolicitudDevolucion solicitud)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearProcedimiento("SP_CANCELARSOLICITUDEVOLUCION");
+                datos.setearParametro("@IDSOLICITUD", solicitud.Id);
+
+
+                datos.ejectutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void agregarSolicitud(SolicitudDevolucion solicitud)
         {
             AccesoDatos datos = new AccesoDatos();

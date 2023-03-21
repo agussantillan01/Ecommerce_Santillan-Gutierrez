@@ -17,47 +17,39 @@ namespace Administracion_web
             if (txtSearch.Text == "")
             {
                 productoNegocio productoNegocio = new productoNegocio();
-        ListaProductos = productoNegocio.listarCelus();
+                ListaProductos = productoNegocio.listarCelus();
                 Session.Add("listadoProductos", ListaProductos);
             } else
             {
                 productoNegocio productoNegocio = new productoNegocio();
-    ListaProductos = productoNegocio.listarConFiltroCelus(txtSearch.Text.ToString());
+                ListaProductos = productoNegocio.listarCelusXfiltroSearch(txtSearch.Text.ToString());
                 Session.Add("listadoProductos", ListaProductos);
             }
-  
+
         }
-
-
 
         protected void btnMenorAMayor_Click(object sender, EventArgs e)
         {
-            //1 
             productoNegocio productoNegocio = new productoNegocio();
-            ListaProductos = productoNegocio.listarXFiltroCelus(1);
-
+            ListaProductos = productoNegocio.listarCelusXfiltroOrden(1);
         }
 
         protected void btnMayorAMenor_Click(object sender, EventArgs e)
         {
-            //2
             productoNegocio productoNegocio = new productoNegocio();
-            ListaProductos = productoNegocio.listarXFiltroCelus(2);
+            ListaProductos = productoNegocio.listarCelusXfiltroOrden(2);
         }
 
         protected void btnAZ_Click(object sender, EventArgs e)
         {
-            //3
             productoNegocio productoNegocio = new productoNegocio();
-            ListaProductos = productoNegocio.listarXFiltroCelus(3);
+            ListaProductos = productoNegocio.listarCelusXfiltroOrden(3);
         }
 
         protected void btnZA_Click(object sender, EventArgs e)
         {
-            //4
             productoNegocio productoNegocio = new productoNegocio();
-            ListaProductos = productoNegocio.listarXFiltroCelus(4);
-
+            ListaProductos = productoNegocio.listarCelusXfiltroOrden(4);
         }
     }
 }

@@ -15,8 +15,8 @@ namespace dominio
         public string Descripcion { get; set; }
         public Tipo Tipo { get; set; }
         public Marca Marca { get; set; }
-        public int MemoriaInterna { get; set; }
-        public int MemoriaRam { get; set; }
+        public int? MemoriaInterna { get; set; }
+        public int? MemoriaRam { get; set; }
         public string  Procesador { get; set; }
         public string TipoDisco { get; set; } //HDD O SSD
         public string SistemaOperativo{ get; set; }

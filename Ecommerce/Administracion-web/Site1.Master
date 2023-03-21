@@ -78,12 +78,14 @@
                             <a style="color: white;" class="nav-link active" aria-current="page" href="quienesSomos.aspx">Quienes Somos</a>
                           <%--  ACA VALIDAR PARA Q SOLO LOS COMPRADORES PUEDAN VER ESTO--%>
                             <%if ((dominio.Usuario)Session["Usuario"] != null)
-                                { if (tu == dominio.TipoUsuario.NORMAL)
-                                { %>
+                                {
+                                    if (tu == dominio.TipoUsuario.NORMAL)
+                                    { %>
                                 <a style="color: white;" class="nav-link active" aria-current="page" href="MisCompras.aspx">Mis Compras</a>
 
-                                <% } else
-                                { %>
+                                <% }
+                                    else
+                                    { %>
                                     <a style="color: white;" class="nav-link active" aria-current="page" href="MisCompras.aspx">Ventas</a>
 
                                     <%}%>
@@ -94,16 +96,17 @@
                 </div>
                 <div class="navbar-nav" style="float: right; padding-right: 3px; padding-left=15px;">
                     <%if ((dominio.Usuario)Session["Usuario"] != null && tu == dominio.TipoUsuario.ADMIN)
-                    {%>
+                        {%>
                     <a class="nav-link" style="color: white;" href="listaProductos.aspx"><i class="fa-sharp fa-solid fa-gear"></i></a>
                      <% } %>
                     
                     <a class="nav-link" style="color: white;" href="Carrito.aspx">Carrito(<%= cant %>)</a>
                     <%if ((dominio.Usuario)Session["Usuario"] != null)
-            { %>
+                        { %>
                     <a class="nav-link btn btn-outline-danger" style="color: white;" href="Login.aspx"><%=Logeado%></a>
-            <%} else
-            {%>
+            <%}
+                else
+                {%>
                     <a class="nav-link btn btn-outline-success" style="color: white;" href="Login.aspx"><%=Logeado%></a>
            <% } %>
                     
@@ -119,9 +122,9 @@
     </form>
     <footer class="footerIcons">
         <p style="text-align:center;">
-            <a style="padding:7px; font-size:30px;" href="#"><i class="fa-brands fa-whatsapp wpp"></i></a>
-            <a style="padding:7px; font-size:30px;" href="#"><i class="fa-brands fa-instagram ig"></i></a>
-            <a style="padding:7px; font-size:30px;" href="#"><i class="fa-brands fa-facebook fb"></i></a>
+            <a style="padding:7px; font-size:30px;" target="_blank" href="https://api.whatsapp.com/send?phone=%2B541130005756&text="><i class="fa-brands fa-whatsapp wpp"></i></a>
+            <a style="padding:7px; font-size:30px;" target="_blank" href="https://www.instagram.com/fravegaonline/"><i class="fa-brands fa-instagram ig"></i></a>
+            <a style="padding:7px; font-size:30px;" target="_blank" href="https://www.facebook.com/Fr%C3%A1vega-280841162256810/"><i class="fa-brands fa-facebook fb"></i></a>
         </p>
         <p style="text-align: right; color: grey; padding: 20px;">
             Copyright 2023© Todos los derechos reservados
